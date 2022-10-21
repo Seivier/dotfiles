@@ -98,6 +98,8 @@ alias l="exa --icons --group-directories-first -a"
 alias v="nvim"
 alias c="code"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias gcc="gcc-12"
+alias g++="g++-12"
 # alias tmux="tmux -CC"
 # <<< personal aliases <<<
 
