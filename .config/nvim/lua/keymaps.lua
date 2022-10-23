@@ -35,7 +35,7 @@ map('n', '<C-t>', ':NERDTreeToggle<CR>')
 map('n', '<F8>', ':TagbarToggle<CR>')
 
 -- Copilot
-map('i', '<C-a>', 'copilot#Accept("\\<CR>")', {script = true, expr = true})
+map('i', '<C-j>', 'copilot#Accept("\\<CR>")', {script = true, expr = true})
 
 
 -- Comfortable motion
@@ -47,6 +47,12 @@ map('n', '<ScrollWheelDown>', ':call comfortable_motion#flick(20)<CR>')
 map('n', '<F5>', ':AsyncTask file-run<CR>')
 map('n', '<F9>', ':AsyncTask file-build<CR>')
 map('n', '<F10>', ':AsyncStop<CR>')
+
+-- FZF
+map('n', '<C-p>', ':FZF<CR>')
 -- map('n', '<Leader>rp', ':! python %<CR>')
 -- map('n', '<Leader>rcp', ':! python3 %<CR>')
+
+-- FastFold
+map('n', 'zuz', '<Plug>(FastFoldUpdate)')
 

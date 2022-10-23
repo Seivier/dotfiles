@@ -29,13 +29,16 @@ return require('packer').startup(function(use)
 
     use {'github/copilot.vim'} -- Copilot
 
-    use {'ctrlpvim/ctrlp.vim'} -- Fuzzy file, buffer, mru, tag, etc finder
+    -- use {'ctrlpvim/ctrlp.vim'} -- Fuzzy file, buffer, mru, tag, etc finder
+    use {'junegunn/fzf', run=":call fzf#install()"} -- Fuzzy finder
 
     use {'luochen1990/rainbow'} -- Rainbow parentheses
 
     use {'majutsushi/tagbar'} -- Displays tags in a window, ordered by scope
 
     use {'sheerun/vim-polyglot'} -- Syntax highlighting
+    
+    use {'zhimsel/vim-stay'} -- Stay in the same window when opening files
 
     use {'Konfekt/FastFold'} -- Fast folding
 
