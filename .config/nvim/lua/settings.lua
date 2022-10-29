@@ -36,10 +36,16 @@ vim.opt.smartcase = true
 vim.opt.showmatch = true
 
 vim.opt.termguicolors = true
-vim.opt.foldmethod = "syntax"
+-- vim.opt.foldmethod = "syntax"
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 vim.opt.background = "dark"
 vim.cmd("colorscheme gruvbox")
+
+vim.opt.completeopt = {"menu", "menuone", "noselect"}
+
+vim.opt.autoread = true
 
 -- PLUGINS
 -- Copilot
@@ -61,8 +67,8 @@ vim.g.fzf_action = {
 
 -- Fastfold
 vim.g.fastfold_savehook = 1
-vim.g.fastfold_fold_command_suffixes = {'x','X','a','A','o','O','c','C'}
-vim.g.fastfold_fold_movement_commands = {']z', '[z', 'zj', 'zk'}
+-- vim.g.fastfold_fold_command_suffixes = {'x','X','a','A','o','O','c','C'}
+-- vim.g.fastfold_fold_movement_commands = {']z', '[z', 'zj', 'zk'}
 
 -- vim.g.markdown_folding = 1
 -- vim.g.rst_fold_enabled = 1
