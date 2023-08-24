@@ -1,8 +1,10 @@
 local opt = vim.opt
 local g = vim.g
 
+g.mapleader = " "
+
 -- numericos
-opt.number = true 
+opt.number = true
 opt.relativenumber = true
 
 -- tabs
@@ -68,10 +70,9 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldenable = false
 
--- Netrw 
+-- Netrw
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
 -- Completion
 opt.completeopt = { "menu", "menuone", "noselect" }
-

@@ -6,7 +6,7 @@ end
 
 local M = {
   "hrsh7th/nvim-cmp",
-  -- lazy = false,
+  lazy = false,
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
@@ -34,29 +34,32 @@ M.config = function()
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
     },
-    -- mapping = cmp.mapping.preset.insert({
-    -- 	["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    -- 	["<C-f>"] = cmp.mapping.scroll_docs(4),
-    -- 	["<C-Space>"] = cmp.mapping.complete(),
-    -- 	["<C-e>"] = cmp.mapping.abort(),
-    -- 	["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    -- }),
-    --
     mapping = {
+      -- ["<Tab>"] = cmp.mapping(function(fallback)
+      --   if cmp.visible() then
+      --     cmp.select_next_item()
+      --     -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+      --     -- they way you will only jump inside the snippet region
+      --   elseif luasnip.expand_or_jumpable() then
+      --     luasnip.expand_or_jump()
+      --   elseif has_words_before() then
+      --     cmp.complete()
+      --   else
+      --     fallback()
+      --   end
+      -- end, { "i", "s" }),
       ["<Tab>"] = cmp.mapping(function(fallback)
+        -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
         if cmp.visible() then
           cmp.select_next_item()
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-          -- they way you will only jump inside the snippet region
         elseif luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
+          -- elseif has_words_before() then
+          --   cmp.complete()
         else
           fallback()
         end
-      end, { "i", "s" }),
-
+      end, { "i", "s", "c", }),
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
@@ -65,11 +68,17 @@ M.config = function()
         else
           fallback()
         end
-      end, { "i", "s" }),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      end, { "i", "s", "c" }),
+      ["<CR>"] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      }),
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-e>"] = cmp.mapping.close(),
+
     },
+
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
       { name = "nvim_lua" },
