@@ -18,6 +18,12 @@ require("lazy").setup({
   { import = "vgonzalez.plugins.coding" },
   { import = "vgonzalez.plugins.ui" },
   { import = "vgonzalez.plugins.explorer" },
-  { import = "vgonzalez.plugins.tools" }
+  { import = "vgonzalez.plugins.tools" },
+}, {
+  change_detection = {
+    notify = false,
+  },
+  install = {
+    colorscheme = {"rose-pine"},
+  },
 })
-

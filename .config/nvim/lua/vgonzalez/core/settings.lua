@@ -9,11 +9,13 @@ opt.relativenumber = true
 
 -- tabs
 opt.tabstop = 2
+opt.softtabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.smarttab = true
-opt.autoindent = true
-opt.smarttab = true
+-- opt.autoindent = true
+
+-- undo
 
 -- ruler
 opt.ruler = true
@@ -38,6 +40,11 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
+-- opt.colorcolumn = "100"
+opt.scrolloff = 10
+
+-- update
+opt.updatetime = 50
 
 -- backspace
 opt.backspace = "indent,eol,start"
@@ -71,8 +78,13 @@ opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldenable = false
 
 -- Netrw
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
+-- g.loaded_netrw = 1
+-- g.loaded_netrwPlugin = 1
 
 -- Completion
-opt.completeopt = { "menu", "menuone", "noselect" }
+opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
+
+-- Spell checking
+opt.spelllang = "en,es"
+opt.spell = true
+

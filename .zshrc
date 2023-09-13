@@ -58,7 +58,8 @@ antigen bundle themes
 antigen bundle vscode
 antigen bundle web-search
 antigen bundle tmux
-antigen bundle vi-mode
+# antigen bundle vi-mode
+# antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle conda-incubator/conda-zsh-completion
 antigen bundle spaceship-prompt/spaceship-vi-mode@main
 
@@ -74,42 +75,70 @@ antigen apply
 # <<< antigen initialize <<<
 
 
-VI_MODE_SET_CURSOR=true
+# VI_MODE_SET_CURSOR=true
 # spaceship add --before char vi_mode
 # spaceship add --after line_sep vi_mode
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
     else
-        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# >>> personal aliases >>>
+# >>> personal stuff >>>
+export UNI="/Volumes/Dev/Universidad"
+
 alias l="exa --icons --group-directories-first -a"
-alias v="nvim"
+alias v="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
+alias nv="nvim"
 alias c="code"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias gcc="gcc-12"
-alias g++="g++-12"
-# alias tmux="tmux -CC"
-# <<< personal aliases <<<
+alias gcc="gcc-11"
+alias g++="g++-11"
+alias uwu="cd $UNI"
+alias home="cd $HOME"
+alias search="brew search"
+alias info="brew info"
+alias install="brew install"
+alias upgrade="brew upgrade"
+alias uninstall="brew uninstall"
+alias list="brew list"
+alias ta="tmux attach -t"
+alias ts="tmux new-session -s"
+alias :q="exit"
+alias restart="exec zsh"
+alias cls="clear"
+
+# <<< personal stuff <<<
+#
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# bindkey -v
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # source /opt/homebrew/opt/spaceship/spaceship.zsh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# opam configuration
+[[ ! -r /Users/vgonzalez/.opam/opam-init/init.zsh ]] || source /Users/vgonzalez/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# if [ "$TMUX" = "" ]; then 
+#   tmux new -A -s default; 
+# fi
+

@@ -1,15 +1,7 @@
-set nocompatible
-let mapleader=","
-source $HOME/.config/vim/plugins/vim-plug.vim
-source $HOME/.config/vim/general/settings.vim
-source $HOME/.config/vim/general/mappings.vim
-source $HOME/.config/vim/general/autocmds.vim
-source $HOME/.config/vim/plugins/coc.vim
-source $HOME/.config/vim/plugins/nerdtree.vim
-source $HOME/.config/vim/plugins/vim-airline.vim
-source $HOME/.config/vim/plugins/rainbow.vim
-source $HOME/.config/vim/plugins/syntastic.vim
-source $HOME/.config/vim/plugins/tagbar.vim
-source $HOME/.config/vim/plugins/copilot.vim
-source $HOME/.config/vim/plugins/comfortable-motion.vim
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
+source $HOME/.config/vim/vgonzalez/init.vim

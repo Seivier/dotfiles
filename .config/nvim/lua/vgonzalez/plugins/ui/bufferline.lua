@@ -16,9 +16,15 @@ return {
           text_align = "center",
         }
       },
-      separator_style = "slope",
-      diagnostics = "nvim_lsp",
-      numbers = "ordinal",
+      -- separator_style = "slope",
+      -- diagnostics = "nvim_lsp",
+      numbers = "buffer_id",
+      hover = {
+        enabled = true,
+        delay = 200,
+        reveal = {'close'}
+      },
     },
   },
 }
+

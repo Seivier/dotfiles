@@ -2,7 +2,10 @@ local lsp_servers = {
   "lua_ls",   -- lua
   "clangd",   -- c/cpp
   "ocamllsp", -- ocaml
-  "typst_lsp"
+  "typst_lsp", -- typst
+  "pyright",  -- python
+  "html",     -- html
+  "tsserver", -- typescript & javascript
 }
 
 local M = {
@@ -12,7 +15,7 @@ local M = {
     {
       "williamboman/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = lsp_servers
+        ensure_installed = lsp_servers,
       },
       dependencies = {
         "williamboman/mason.nvim",
@@ -20,53 +23,42 @@ local M = {
       },
     },
     { "hrsh7th/cmp-nvim-lsp" },
-    { "folke/neodev.nvim",   opts = {} }
+    {
+      "SmiteshP/nvim-navbuddy",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim",
+      },
+      opts = { lsp = { auto_attach = true } },
+    },
+    { "folke/neodev.nvim",              opts = {} },
+    { "jose-elias-alvarez/null-ls.nvim" },
   },
 }
 
 M.config = function()
-  --   local lsp_mason = require("mason-lspconfig")
-  --   local lsp_config = require("lspconfig")
-  --
-  --   local on_attach = function(_, bufnr)
-  --     local function buf_set_option(...)
-  --       vim.api.nvim_buf_set_option(bufnr, ...)
-  --     end
-  --   end
+  local null_ls = require("null-ls")
+  local formatting = null_ls.builtins.formatting
+
+  null_ls.setup({
+    sources = {
+      formatting.prettier,
+      formatting.stylua,
+      formatting.autopep8,
+      formatting.djlint,
+      formatting.ocamlformat,
+      formatting.prettier,
+    },
+  })
+
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  capabilities.offsetEncoding = "utf-16"
+  
   for _, lsp in ipairs(lsp_servers) do
-    require('lspconfig')[lsp].setup({
-      capabilities = capabilities
+    require("lspconfig")[lsp].setup({
+      capabilities = capabilities,
     })
   end
-
-  -- require('lspconfig').lua_ls.setup({
-  --   on_init = function(client)
-  --     local path = client.workspace_folders[1].name
-  --     if not vim.loop.fs_stat(path .. '/.luarc.json') and not vim.loop.fs_stat(path .. '/.luarc.jsonc') then
-  --       client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-  --         runtime = {
-  --           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-  --           version = 'LuaJIT'
-  --         },
-  --         diagnostics = {
-  --           globals = {
-  --             "vim",
-  --           },
-  --         },
-  --         -- Make the server aware of Neovim runtime files
-  --         workspace = {
-  --           -- library = { vim.env.VIMRUNTIME }
-  --           -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-  --           library = vim.api.nvim_get_runtime_file("", true)
-  --         },
-  --       })
-  --       client.notify("workspace/didChangeConfiguration", { settings = client.settings })
-  --     end
-  --     return true
-  --   end
-  -- })
 end
-
 
 return M

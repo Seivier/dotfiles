@@ -17,7 +17,10 @@ M.config = function()
     },
     lightbulb = {
       virtual_text = false
-    }
+    },
+    symbol_in_winbar = {
+      enable = false,
+    } 
   })
 end
 

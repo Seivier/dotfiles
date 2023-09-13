@@ -40,10 +40,11 @@ local gb = {
 local rp = {
   "rose-pine/neovim",
   name = "rose-pine",
+  priority = 1000,
 
 }
 rp.config = function()
-  vim.cmd.colorscheme("rose-pine-moon")
+  vim.cmd.colorscheme("rose-pine")
 end
 
 return {
