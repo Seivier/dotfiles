@@ -41,7 +41,7 @@ opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 -- opt.colorcolumn = "100"
-opt.scrolloff = 10
+opt.scrolloff = 3
 
 -- update
 opt.updatetime = 50

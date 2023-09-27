@@ -44,42 +44,49 @@ M.config = function()
       },
       shortcut = {
         {
-          icon = '󰈞 ',
+          icon = '🔎 ',
           desc = 'Files',
           group = 'Label',
           action = 'Telescope find_files',
           key = 'f',
         },
         {
-          icon = '󰙅 ',
+          icon = '📁 ',
           desc = 'File tree',
           group = 'DiagnosticHint',
           action = 'Neotree reveal position=float',
           key = 'e',
         },
         {
-          icon = ' ',
+          icon = '🔌 ',
           desc = 'Plugins',
           group = 'Number',
           action = 'Lazy',
           key = 'p',
         },
         {
-          icon = " ",
+          icon = "💻 ",
           desc = "Sessions",
           group = "@property",
           action = "Telescope tmux sessions",
           key = "s"
         },
         {
-          icon = " ",
-          desc = "Terminal",
+          icon = "🎣 ",
+          desc = "Harpoon",
           group = "WarningMsg",
-          action = "ToggleTerm direction=float",
-          key = "t"
+          action = function() require('harpoon.ui').toggle_quick_menu() end,
+          key = "h"
         },
+        -- {
+        --   icon = " ",
+        --   desc = "Terminal",
+        --   group = "WarningMsg",
+        --   action = "ToggleTerm direction=float",
+        --   key = "t"
+        -- },
         {
-          icon = "󰖭 ",
+          icon = "❌ ",
           desc = "Quit",
           group = "ErrorMsg",
           action = "quit",

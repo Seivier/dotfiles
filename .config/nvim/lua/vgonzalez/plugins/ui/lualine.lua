@@ -26,7 +26,7 @@ return {
       },
     },
     inactive_sections = {
-      lualine_a = { 'filename' },
+      -- lualine_a = { 'filename' },
       lualine_b = {},
       lualine_c = {},
       lualine_x = {},
@@ -35,18 +35,18 @@ return {
     },
     winbar = {
       -- lualine_a = {{ 'fileformat', separator = { left = '', right = ''} }},
-      -- lualine_b = {
-      --   {
-      --     'filename',
-      --     symbols = {
-      --       modified = '',
-      --       readonly = '',
-      --       unnamed = '',
-      --       newfile = ''
-      --     }
-      --   }
-      --
-      -- },
+      lualine_b = {
+        {
+          'filename',
+          symbols = {
+            modified = '',
+            readonly = '',
+            unnamed = '',
+            newfile = ''
+          }
+        }
+
+      },
       lualine_c = {
         {
           'diagnostics',
@@ -78,18 +78,18 @@ return {
     },
     inactive_winbar = {
       -- lualine_a = {{ 'fileformat', separator = { left = '', right = ''} }},
-      -- lualine_b = {
-      --   {
-      --     'filename',
-      --     symbols = {
-      --       modified = '',
-      --       readonly = '',
-      --       unnamed = '',
-      --       newfile = ''
-      --     }
-      --   }
-      --
-      -- },
+      lualine_b = {
+        {
+          'filename',
+          symbols = {
+            modified = '',
+            readonly = '',
+            unnamed = '',
+            newfile = ''
+          }
+        }
+
+      },
       lualine_x = { 'fileformat' },
     },
     extensions = {

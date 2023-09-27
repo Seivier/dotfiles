@@ -8,21 +8,20 @@ keymap.set({ "n", "i" }, "<C-q>", "<cmd>qall<cr>", { noremap = true })
 -- split windows
 keymap.set("n", "<leader>ws", "<cmd>split<cr>")
 keymap.set("n", "<leader>wv", "<cmd>vsplit<cr>")
--- keymap.set("n", "<leader>we", "<cmd>")
 keymap.set("n", "<leader>wx", "<cmd>close<cr>")
 
 -- buffers
-keymap.set("n", "<Tab>", "<cmd>bnext<cr>")
-keymap.set("n", "<S-Tab>", "<cmd>bprevious<cr>")
-keymap.set("n", "<leader>bx", "<cmd>bdelete<cr>")
-keymap.set("n", "<leader>bg", function ()
+keymap.set("n", "<Tab>", "<cmd>b#<cr>")   -- bnext
+keymap.set("n", "<S-Tab>", "<cmd>bd<cr>") -- bprevious
+keymap.set("n", "<leader>bx", "<cmd>!bd<cr>")
+keymap.set("n", "<leader>bg", function()
   local num = vim.fn.input("Buffer number: ")
-  vim.cmd("b"..num)
+  vim.cmd("b" .. num)
 end)
 
 -- tabs
-keymap.set("n", "<leader>tn", "<cmd>tabnext<cr>")
-keymap.set("n", "<leader>tp", "<cmd>tabprevious<cr>")
+keymap.set("n", "<looder>tn", "<cmd>tabnext<cr>")     -- tab
+keymap.set("n", "<leader>tp", "<cmd>tabprevious<cr>") -- s-tab?
 keymap.set("n", "<leader>to", "<cmd>tabnew<cr>")
 keymap.set("n", "<leader>tx", "<cmd>tabclose<cr>")
 
@@ -95,8 +94,8 @@ keymap.set("n", "<leader>nb", "<cmd>Navbuddy<cr>")
 -- Toggleterm
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
-  keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-  keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+  -- keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+  -- keymap.set("t", "jk", [[<C-\><C-n>]], opts)
   keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
   keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
   keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
@@ -111,7 +110,6 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 --  return vim.fn.systemlist([[make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | grep -v Makefile | sort -u]])
 -- end
 
-
 -- Exec
 keymap.set("n", "<leader>dm", function()
   -- vim.ui.select(maketargets(), {}, function (target)
@@ -122,6 +120,8 @@ keymap.set("n", "<leader>dm", function()
       return
     end
     vim.cmd("AsyncRun -mode=term make " .. target)
+    -- require('harpoon.term').sendCommand(1, "make " .. target)
+    -- require('harpoon.term').gotoTerminal(1)
   end)
 end)
 keymap.set("n", "<leader>dd", function()
@@ -139,11 +139,39 @@ keymap.set("n", "<leader>dd", function()
   end)
 end)
 
-
 -- Open
 keymap.set("n", "<leader>of", "<cmd>! open '%:h' <cr>")
 keymap.set("n", "<leader>op", "<cmd>! open '%:p:r.pdf' <cr>")
 
 -- Git
-keymap.set("n", "<leader>gs", "<cmd>Neogit<cr>")
+keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>")
+-- keymap.set("n", "<leader>gs", "<cmd>Neogit<cr>")
 keymap.set("n", "<leader>gh", "<cmd>! gh browse <cr>")
+
+-- Harpoon
+keymap.set("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
+keymap.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>")
+keymap.set("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
+keymap.set("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
+keymap.set("n", "<leader>1", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
+keymap.set("n", "<leader>2", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>")
+keymap.set("n", "<leader>3", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>")
+keymap.set("n", "<leader>4", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>")
+keymap.set("n", "<leader>5", "<cmd>lua require('harpoon.ui').nav_file(5)<cr>")
+keymap.set("n", "<leader>6", "<cmd>lua require('harpoon.ui').nav_file(6)<cr>")
+keymap.set("n", "<leader>7", "<cmd>lua require('harpoon.ui').nav_file(7)<cr>")
+keymap.set("n", "<leader>8", "<cmd>lua require('harpoon.ui').nav_file(8)<cr>")
+keymap.set("n", "<leader>9", "<cmd>lua require('harpoon.ui').nav_file(9)<cr>")
+
+-- Trouble
+keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
+keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
+keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
+keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
+keymap.set("n", "<leader>xx", "<cmd>TroubleToggle quickfix<cr>")
+keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>")
+
+-- Icon picker
+keymap.set("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>")
+keymap.set("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>")

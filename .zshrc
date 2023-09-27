@@ -59,7 +59,7 @@ antigen bundle vscode
 antigen bundle web-search
 antigen bundle tmux
 # antigen bundle vi-mode
-# antigen bundle jeffreytse/zsh-vi-mode
+antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle conda-incubator/conda-zsh-completion
 antigen bundle spaceship-prompt/spaceship-vi-mode@main
 
