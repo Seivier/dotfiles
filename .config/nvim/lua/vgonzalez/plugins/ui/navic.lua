@@ -44,4 +44,4 @@ M.opts = {
     click = true
 }
 
-return M
+return {}

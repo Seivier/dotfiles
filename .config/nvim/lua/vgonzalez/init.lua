@@ -24,6 +24,6 @@ require("lazy").setup({
     notify = false,
   },
   install = {
-    colorscheme = {"rose-pine"},
+    colorscheme = {"catppuccin-latte"},
   },
 })

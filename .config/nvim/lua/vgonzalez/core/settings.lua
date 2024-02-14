@@ -13,7 +13,7 @@ opt.softtabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.smarttab = true
--- opt.autoindent = true
+opt.autoindent = true
 
 -- undo
 
@@ -41,10 +41,10 @@ opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 -- opt.colorcolumn = "100"
-opt.scrolloff = 3
+opt.scrolloff = 0
 
 -- update
-opt.updatetime = 50
+opt.updatetime = 800
 
 -- backspace
 opt.backspace = "indent,eol,start"
@@ -52,9 +52,10 @@ opt.backspace = "indent,eol,start"
 -- clipboard
 opt.clipboard:append("unnamedplus")
 
--- split windows
+-- windows
 opt.splitright = true
 opt.splitbelow = true
+opt.equalalways = true
 
 -- show commands (??)
 opt.showcmd = true

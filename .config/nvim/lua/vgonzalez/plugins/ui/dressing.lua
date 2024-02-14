@@ -13,9 +13,6 @@ M.config = function()
       start_in_insert = true,
       relative = 'win',
       border = 'solid',
-      -- win_options = {
-      --   winbled = 100,
-      -- }
     },
     select = {
       enabled = true,

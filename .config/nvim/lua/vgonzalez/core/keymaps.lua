@@ -5,10 +5,17 @@ keymap.set("i", "jk", "<esc>")
 keymap.set({ "n", "i" }, "<C-s>", "<cmd>wa<cr>", { noremap = true })
 keymap.set({ "n", "i" }, "<C-q>", "<cmd>qall<cr>", { noremap = true })
 
+-- null buffer
+keymap.set("n", "<leader>c", '"_c')
+keymap.set("n", "<leader>d", '"_d')
+
 -- split windows
 keymap.set("n", "<leader>ws", "<cmd>split<cr>")
 keymap.set("n", "<leader>wv", "<cmd>vsplit<cr>")
 keymap.set("n", "<leader>wx", "<cmd>close<cr>")
+keymap.set("n", "<leader>wq", "<cmd>only<cr>")
+keymap.set("n", "<leader>we", "<C-w>=")
+keymap.set("n", "<leader>wz", "<cmd>resize | vertical resize<cr>")
 
 -- buffers
 keymap.set("n", "<Tab>", "<cmd>b#<cr>")   -- bnext
@@ -18,9 +25,11 @@ keymap.set("n", "<leader>bg", function()
   local num = vim.fn.input("Buffer number: ")
   vim.cmd("b" .. num)
 end)
+keymap.set("n", "<leader>bn", "<cmd>bn<cr>")
+keymap.set("n", "<leader>bp", "<cmd>bp<cr>")
 
 -- tabs
-keymap.set("n", "<looder>tn", "<cmd>tabnext<cr>")     -- tab
+keymap.set("n", "<leader>tn", "<cmd>tabnext<cr>")     -- tab
 keymap.set("n", "<leader>tp", "<cmd>tabprevious<cr>") -- s-tab?
 keymap.set("n", "<leader>to", "<cmd>tabnew<cr>")
 keymap.set("n", "<leader>tx", "<cmd>tabclose<cr>")
@@ -35,7 +44,7 @@ keymap.set("n", "<leader>fts", "<cmd>Telescope tmux sessions theme=dropdown<cr>"
 keymap.set("n", "<leader>ftw", "<cmd>Telescope tmux windows<cr>")
 
 -- Neotree
-keymap.set("n", "<leader>e", "<cmd>Neotree toggle position=left<cr>")
+keymap.set("n", "<leader>e", "<cmd>Neotree toggle position=right<cr>")
 
 -- LSP
 -- Global mappings.
@@ -145,11 +154,12 @@ keymap.set("n", "<leader>op", "<cmd>! open '%:p:r.pdf' <cr>")
 
 -- Git
 keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>")
--- keymap.set("n", "<leader>gs", "<cmd>Neogit<cr>")
+keymap.set("n", "<leader>gs", "<cmd>Git<cr>")
 keymap.set("n", "<leader>gh", "<cmd>! gh browse <cr>")
 
 -- Harpoon
 keymap.set("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
+keymap.set("n", "<leader>hf", "<cmd>Telescope harpoon marks<cr>")
 keymap.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>")
 keymap.set("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
 keymap.set("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")

@@ -4,7 +4,7 @@ return {
   { "christoomey/vim-tmux-navigator", lazy = false },
 
   -- transparent
-  { "xiyaowong/nvim-transparent",     lazy = false },
+  -- { "xiyaowong/nvim-transparent",     lazy = false },
 
   -- surround
   {
@@ -34,16 +34,6 @@ return {
       disable_legacy_commands = true,
     },
   },
-  -- {
-  --   "glepnir/nerdicons.nvim",
-  --   cmd = "NerdIcons",
-  --   config = function()
-  --     require("nerdicons").setup({})
-  --   end,
-  -- },
-  --
-  -- Smooth scrolling
-  -- { "karb94/neoscroll.nvim", lazy = false, opts = {} },
 
   -- Markdown preview
   {
@@ -54,7 +44,7 @@ return {
     end,
   },
 
-  "norcalli/nvim-terminal.lua",
+  -- "norcalli/nvim-terminal.lua",
 
   -- auto pairs
   {
@@ -64,11 +54,13 @@ return {
   },
 
   -- blame
-  {
-    "f-person/git-blame.nvim",
-    event = "BufRead",
-    config = function()
-      vim.cmd("highlight default link gitblame SpecialComment")
-    end,
-  },
+  -- {
+  --   "f-person/git-blame.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     vim.cmd("highlight default link gitblame SpecialComment")
+  --   end,
+  -- },
+  --
+
 }
