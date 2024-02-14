@@ -6,7 +6,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 export HOMEBREW_NO_ENV_HINTS=TRUE
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
@@ -96,9 +95,10 @@ unset __conda_setup
 
 # >>> personal stuff >>>
 export UNI="/Volumes/Dev/Universidad"
+export EDITOR="nvim"
 
 alias l="exa --icons --group-directories-first -a"
-alias v="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
+# alias v="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 alias nv="nvim"
 alias c="code"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -112,9 +112,10 @@ alias install="brew install"
 alias upgrade="brew upgrade"
 alias uninstall="brew uninstall"
 alias list="brew list"
-alias ta="tmux attach -t"
-alias ts="tmux new-session -s"
-alias :q="exit"
+alias muxs="tmuxinator start"
+alias muxn="tmuxinator new"
+alias muxo="tmuxinator open"
+alias mux="tmuxinator"
 alias restart="exec zsh"
 alias cls="clear"
 

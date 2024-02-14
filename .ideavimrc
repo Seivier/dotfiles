@@ -2,6 +2,7 @@
 "   the same commands as the original .vimrc configuration.
 " You can find a list of commands here: https://jb.gg/h38q75
 " Find more examples here: https://jb.gg/share-ideavimrc
+let mapleader = " "
 
 " Source your .vimrc
 " source ~/.vimrc
@@ -10,14 +11,16 @@
 "                             
 "                             `ideaput`  (default on)   - IdeaVim ONLY
 "                             enable native idea paste action for put operations
-"
+set clipboard=ideaput
 " 'digraph'        'dg'       enable the entering of digraphs in Insert mode
 " 'gdefault'       'gd'       the ":substitute" flag 'g' is by default
+set gdefault=g
 " 'history'        'hi'       number of command-lines that are remembered
 " 'hlsearch'       'hls'      highlight matches with the last search pattern
 " 'ignorecase'     'ic'       ignore case in search patterns
 " 'iskeyword'      'isk'      defines keywords for commands like 'w', '*', etc.
 " 'incsearch'      'is'       show where search pattern typed so far matches
+set incsearch
 "
 " `keymodel`       `km`       String (default "continueselect,stopselect")
 "
@@ -44,11 +47,15 @@
 " 'more'           'more'  When on, listings pause when the whole screen is filled.
 " 'nrformats'      'nf'    number formats recognized for CTRL-A command
 " 'number'         'nu'    print the line number in front of each line
+set number
 " 'relativenumber' 'rnu'   show the line number relative to the line with
+set relativenumber
 "                          the cursor
 " 'scroll'         'scr'   lines to scroll with CTRL-U and CTRL-D
+set scroll
 " 'scrolljump'     'sj'    minimum number of lines to scroll
 " 'scrolloff'      'so'    minimum number of lines above and below the cursor
+set scrolloff=3
 " 'selection'      'sel'   what type of selection to use
 "
 " `selectmode`     `slm`   String (default "")
@@ -70,6 +77,7 @@
 " 'sidescroll'     'ss'        minimum number of columns to scroll horizontally
 " 'sidescrolloff'  'siso'      min. number of columns to left and right of cursor
 " 'smartcase'      'scs'       no ignore case when pattern is uppercase
+set smartcase
 " 'timeout'        'to'        use timeout for mapped key sequences
 " 'timeoutlen'     'tm'        timeout duration for a mapped key sequence
 " 'undolevels'     'ul'        maximum number of changes that can be undone
@@ -104,6 +112,7 @@
 "
 "               If true, join command will be performed via IDE
 "               See wiki/`ideajoin` examples
+set ideajoin
 "               
 " `ideastatusicon`  `ideastatusicon` String(default "enabled")
 "
@@ -143,21 +152,21 @@
 "" -- Suggested options --
 " Show a few lines of context around the cursor. Note that this makes the
 " text scroll if you mouse-click near the start or end of the window.
-set scrolloff=5
+" set scrolloff=5
 
 " Do incremental searching.
-set incsearch
+" set incsearch
 
-set rn
+" set rn
 
 
 " Don't use Ex mode, use Q for formatting.
-map Q gq
+" map Q gq
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 
 " Highlight copied text
-Plug 'machakann/vim-highlightedyank'
+" Plug 'machakann/vim-highlightedyank'
 " Commentary plugin
 Plug 'tpope/vim-commentary'
 
@@ -165,6 +174,7 @@ Plug 'tpope/vim-commentary'
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action
 "map \r <Action>(ReformatCode)
+map <leader>e <Action>(Project)
 
 "" Map <leader>d to start debug
 "map <leader>d <Action>(Debug)
