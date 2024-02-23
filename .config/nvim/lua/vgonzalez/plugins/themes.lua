@@ -29,7 +29,7 @@ cat.config = function()
   --   flavour = "mocha",
   })
   -- vim.cmd[[colorscheme catppuccin-mocha]]
-  vim.cmd.colorscheme("catppuccin-frappe")
+  -- vim.cmd.colorscheme("catppuccin-frappe")
 end
 
 local gb = {
@@ -45,8 +45,17 @@ local rp = {
   "rose-pine/neovim",
   name = "rose-pine",
   priority = 1000,
-
 }
+
+rp.config = function ()
+  local r = require("rose-pine")
+  r.setup({
+    styles = {
+      transparency = true,
+    }
+  })
+  vim.cmd.colorscheme("rose-pine")
+end
 
 local tn = {
   "folke/tokyonight.nvim",

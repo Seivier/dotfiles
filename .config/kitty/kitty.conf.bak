@@ -6,10 +6,10 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-# font_family      JetBrainsMono Nerd Font Mono
+font_family      JetBrainsMono NFM
 # font_family      Maple Mono
 # font_family      ComicShannsMono Nerd Font Mono
-font_family      Comic Code Ligatures
+# font_family      Comic Code Ligatures
 # font_family      CodeNewRoman Nerd Font Mono
 # font_family      MesloLGM Nerd Font Mono
 # font_family      CaskaydiaCove Nerd Font Mono
@@ -20,7 +20,8 @@ bold_italic_font auto
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
-#: +list-fonts` command. By default they are derived automatically, by
+#: +list-fonts` commanfajsdklfj:q
+#d. By default they are derived automatically, by
 #: the OSes font system. When bold_font or bold_italic_font is set to
 #: auto on macOS, the priority of bold fonts is semi-bold, bold,
 #: heavy. Setting them manually is useful for font families that have
@@ -31,7 +32,7 @@ bold_italic_font auto
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 12.0 
+font_size 14.0 
 
 #: Font size (in pts)
 
@@ -1087,7 +1088,7 @@ hide_window_decorations titlebar-only
 
 #: The foreground and background colors.
 
-background_opacity 0.8
+background_opacity 0.9
 
 #: The opacity of the background. A number between zero and one, where
 #: one is opaque and zero is fully transparent. This will only work if
@@ -1111,7 +1112,7 @@ background_opacity 0.8
 #: this option when reloading the config will only work if
 #: dynamic_background_opacity was enabled in the original config.
 
-background_blur 50
+background_blur 10
 
 #: Set to a positive value to enable background blur (blurring of the
 #: visuals behind a transparent window) on platforms that support it.
@@ -2398,6 +2399,6 @@ macos_show_window_title_in all
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Latte
+# Catppuccin-Macchiato
 include current-theme.conf
 # END_KITTY_THEME
