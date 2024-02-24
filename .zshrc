@@ -22,7 +22,9 @@ export UNI="$DEV/Universidad"
 export EDITOR="nvim"
 
 # aliases
-alias l="exa --icons --group-directories-first -a"
+alias ls="eza"
+alias ll="eza -l"
+alias li="eza --icons"
 alias nv="nvim"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias uwu="cd $UNI"

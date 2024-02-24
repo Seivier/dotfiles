@@ -1,13 +1,10 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "koekeishiya/formulae"
 tap "ohueter/tap"
 tap "riscv-software-src/riscv"
-
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Cross-platform make
@@ -18,10 +15,8 @@ brew "coursier"
 brew "dos2unix"
 # Run arbitrary commands when files change
 brew "entr"
-# Modern replacement for 'ls'
-brew "exa"
-# Command-line interface for SQLite
-brew "sqlite"
+# Modern, maintained replacement for ls
+brew "eza"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GNU compiler collection
@@ -60,6 +55,8 @@ brew "ripgrep"
 brew "sdl2"
 # Sample multi-channel audio mixer library
 brew "sdl2_mixer"
+# Command-line interface for SQLite
+brew "sqlite"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Terminal multiplexer
@@ -153,8 +150,6 @@ cask "microsoft-edge"
 cask "microsoft-office"
 # Minimal installer for conda
 cask "miniconda"
-# Open source implementation of Microsoft's .NET Framework
-cask "mono-mdk-for-visual-studio"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Collaboration platform for API development
