@@ -16,19 +16,17 @@ local M = {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "saadparwaiz1/cmp_luasnip",
+    "L3MON4D3/LuaSnip",
     {
       "zbirenbaum/copilot-cmp",
       config = function()
         require("copilot_cmp").setup()
       end,
     },
+
+
     {
-      "L3MON4D3/LuaSnip",
-      dependencies = {
-        "rafamadriz/friendly-snippets",
-      },
-    },
-    { "onsails/lspkind.nvim",
+      "onsails/lspkind.nvim",
       config = function()
         require("lspkind").init({
           symbol_map = {
@@ -44,6 +42,7 @@ local M = {
 M.config = function()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
+  require("luasnip.loaders.from_vscode").lazy_load()
   local lspkind = require("lspkind")
   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
   cmp.setup({
@@ -61,8 +60,8 @@ M.config = function()
         -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
         if cmp.visible() and has_words_before then
           cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+          -- elseif luasnip.expand_or_jumpable() then
+          --   luasnip.expand_or_jump()
         elseif has_words_before() then
           cmp.complete()
         else
@@ -72,8 +71,8 @@ M.config = function()
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
+          -- elseif luasnip.jumpable(-1) then
+          --   luasnip.jump(-1)
         else
           fallback()
         end
@@ -88,9 +87,9 @@ M.config = function()
     },
     sources = cmp.config.sources({
       { name = "copilot" },
+      { name = "luasnip" }, -- For luasnip users.
       { name = "nvim_lsp" },
       { name = "nvim_lua" },
-      { name = "luasnip" }, -- For luasnip users.
     }, {
       { name = "path" },
     }),

@@ -53,3 +53,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# opam configuration
+[[ ! -r /Users/vgonzalez/.opam/opam-init/init.zsh ]] || source /Users/vgonzalez/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

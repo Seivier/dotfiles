@@ -185,3 +185,18 @@ keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>")
 -- Icon picker
 keymap.set("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>")
 keymap.set("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>")
+
+-- Luasnip
+keymap.set({"i", "s"}, "<C-k>", function ()
+  local ls = require("luasnip")
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, { silent = true })
+
+keymap.set({"i", "s"}, "<C-j>", function ()
+  local ls = require("luasnip")
+  if ls.jumpable(-1) then
+    ls.jump(-1)
+  end
+end, { silent = true })
