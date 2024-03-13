@@ -1,202 +1,202 @@
-local keymap = vim.keymap
+local keymap = vim.keymap.set
 
-keymap.set("i", "jk", "<esc>")
+keymap("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
-keymap.set({ "n", "i" }, "<C-s>", "<cmd>wa<cr>", { noremap = true })
-keymap.set({ "n", "i" }, "<C-q>", "<cmd>qall<cr>", { noremap = true })
+keymap("i", "jk", "<Esc>")
 
 -- null buffer
-keymap.set("n", "<leader>c", '"_c')
-keymap.set("n", "<leader>d", '"_d')
+keymap("n", "<leader>c", '"_c')
+keymap("n", "<leader>d", '"_d')
 
 -- split windows
-keymap.set("n", "<leader>ws", "<cmd>split<cr>")
-keymap.set("n", "<leader>wv", "<cmd>vsplit<cr>")
-keymap.set("n", "<leader>wx", "<cmd>close<cr>")
-keymap.set("n", "<leader>wq", "<cmd>only<cr>")
-keymap.set("n", "<leader>we", "<C-w>=")
-keymap.set("n", "<leader>wz", "<cmd>resize | vertical resize<cr>")
-
+keymap("n", "<leader>ws", "<cmd>split<cr>", { desc = "Split window horizontally" })
+keymap("n", "<leader>wv", "<cmd>vsplit<cr>", { desc = "Split window vertically" })
+keymap("n", "<leader>wc", "<cmd>close<cr>", { desc = "Close this window" })
+keymap("n", "<leader>wq", "<cmd>only<cr>", { desc = "Close other windows" })
+keymap("n", "<leader>we", "<C-w>=", { desc = "Resize all windows" })
+keymap("n", "<leader>wz", "<cmd>resize | vertical resize<cr>", { desc = "Zoom this window" })
+--
 -- buffers
-keymap.set("n", "<Tab>", "<cmd>b#<cr>")   -- bnext
-keymap.set("n", "<S-Tab>", "<cmd>bd<cr>") -- bprevious
-keymap.set("n", "<leader>bx", "<cmd>!bd<cr>")
-keymap.set("n", "<leader>bg", function()
-  local num = vim.fn.input("Buffer number: ")
-  vim.cmd("b" .. num)
+keymap("n", "<Tab>", "<cmd>b#<cr>") -- bnext
+keymap("n", "<S-Tab>", "<cmd>bd<cr>") -- bprevious
+keymap("n", "<leader>bx", "<cmd>!bd<cr>")
+keymap("n", "<leader>bg", function()
+	local num = vim.fn.input("Buffer number: ")
+	vim.cmd("b" .. num)
 end)
-keymap.set("n", "<leader>bn", "<cmd>bn<cr>")
-keymap.set("n", "<leader>bp", "<cmd>bp<cr>")
+keymap("n", "<leader>bn", "<cmd>bn<cr>")
+keymap("n", "<leader>bp", "<cmd>bp<cr>")
 
 -- tabs
-keymap.set("n", "<leader>tn", "<cmd>tabnext<cr>")     -- tab
-keymap.set("n", "<leader>tp", "<cmd>tabprevious<cr>") -- s-tab?
-keymap.set("n", "<leader>to", "<cmd>tabnew<cr>")
-keymap.set("n", "<leader>tx", "<cmd>tabclose<cr>")
+keymap("n", "<leader>tn", "<cmd>tabnext<cr>") -- tab
+keymap("n", "<leader>tp", "<cmd>tabprevious<cr>") -- s-tab?
+keymap("n", "<leader>to", "<cmd>tabnew<cr>")
+keymap("n", "<leader>tx", "<cmd>tabclose<cr>")
 
 -- Telescope
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
-keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
-keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
-keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
-keymap.set("n", "<leader>fe", "<cmd>Telescope file_browser theme=dropdown<cr>")
-keymap.set("n", "<leader>fts", "<cmd>Telescope tmux sessions theme=dropdown<cr>")
-keymap.set("n", "<leader>ftw", "<cmd>Telescope tmux windows<cr>")
+keymap("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Search help" })
+keymap("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Search keymaps" })
+keymap("n", "<leader>sf", "<cmd>Telescope find_files<cr>", { desc = "Search files" })
+keymap("n", "<leader>ss", "<cmd>Telescope builtin<cr>", { desc = "Search select Telescope" })
+keymap("n", "<leader>sw", "<cmd>Telescope grep_string<cr>", { desc = "Search current word" })
+keymap("n", "<leader>sg", "<cmd>Telescope live_grep<cr>", { desc = "Search by grep" })
+keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "Search diagnostics" })
+keymap("n", "<leader>sr", "<cmd>Telescope resume<cr>", { desc = "Search resume" })
+keymap("n", "<leader>s.", "<cmd>Telescope oldfiles<cr>", { desc = "Search Recent Files" })
+keymap("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", { desc = "Find existing buffers" })
+keymap("n", "<leader>sb", "<cmd>Telescope buffers<cr>", { desc = "Search buffers" })
+keymap("n", "<leader>se", "<cmd>Telescope file_browser<cr>", { desc = "Open browser" })
+keymap("n", "<leader>sts", "<cmd>Telescope tmux sessions<cr>", { desc = "Search tmux sessions" })
+keymap("n", "<leader>stw", "<cmd>Telescope tmux windows<cr>", { desc = "Search tmux windows" })
+
+keymap("n", "<leader>/", function()
+	-- You can pass additional configuration to telescope to change theme, layout, etc.
+	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+		winblend = 10,
+		previewer = false,
+	}))
+end, { desc = "Fuzzily search in current buffer" })
+
+keymap("n", "<leader>s/", function()
+	require("telescope.builtin").live_grep({
+		grep_open_files = true,
+		prompt_title = "Live Grep in Open Files",
+	})
+end, { desc = "Search in Open Files" })
+
+keymap("n", "<leader>sn", function()
+	require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+end, { desc = "Search neofiles" })
 
 -- Neotree
-keymap.set("n", "<leader>e", "<cmd>Neotree toggle position=right<cr>")
+keymap("n", "<leader>nt", "<cmd>Neotree toggle position=right<cr>")
 
 -- LSP
--- Global mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-keymap.set("n", "<leader>le", vim.diagnostic.open_float)
-keymap.set("n", "[d", vim.diagnostic.goto_prev)
-keymap.set("n", "]d", vim.diagnostic.goto_next)
-keymap.set("n", "<leader>lq", vim.diagnostic.setloclist)
+keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+keymap("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic error messages" })
+keymap("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+	group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+	callback = function(event)
+		local map = function(keys, func, desc)
+			vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+		end
 
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
-    -- local opts = {}
-    keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<cr>", opts)
-    keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
-    keymap.set("n", "gi", "<cmd>Lspsaga finder imp<cr>", opts)
-    keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-    keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
-    keymap.set("n", "<leader>lh", vim.lsp.buf.signature_help, opts)
-    keymap.set("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, opts)
-    keymap.set("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, opts)
-    keymap.set("n", "<leader>lwl", function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    keymap.set("n", "<leader>lD", "<cmd>Lspsaga peek_type_definition<cr>", opts)
-    keymap.set("n", "<leader>ld", "<cmd>Lspsaga peek_definition<cr>", opts)
-    keymap.set("n", "<leader>lrn", "<cmd>Lspsaga rename<cr>", opts)
-    keymap.set({ "n", "v" }, "<leader>lca", "<cmd>Lspsaga code_action<cr>", opts)
-    keymap.set("n", "gr", "<cmd>Lspsaga finder<cr>", opts)
-    -- keymap.set({ 'n', 't' }, '<leader>tt', '<cmd>Lspsaga term_toggle<cr>', opts)
-    keymap.set("n", "<leader>lo", "<cmd>Lspsaga outline<cr>", opts)
-    keymap.set("n", "<leader>lf", function()
-      vim.lsp.buf.format({ async = true })
-    end, opts)
-    -- vim.api.nvim_create_autocmd("BufWritePre", {
-    --   callback = function(_)
-    --     vim.lsp.buf.format({ async = true })
-    --   end,
-    -- })
-    -- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async = false})]]
-  end,
+		-- local opts = { buffer = ev.buf }
+		-- -- local opts = {}
+		-- keymap("n", "gD", vim.lsp.buf.declaration, opts)
+		-- keymap("n", "gd", "<cmd>Lspsaga goto_definition<cr>", opts)
+		-- keymap("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
+		-- keymap("n", "gi", "<cmd>Lspsaga finder imp<cr>", opts)
+		-- keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
+		-- keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
+		-- keymap("n", "<leader>lh", vim.lsp.buf.signature_help, opts)
+		-- keymap("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, opts)
+		-- keymap("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, opts)
+		-- keymap("n", "<leader>lwl", function()
+		-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		-- end, opts)
+		-- keymap("n", "<leader>lD", "<cmd>Lspsaga peek_type_definition<cr>", opts)
+		-- keymap("n", "<leader>ld", "<cmd>Lspsaga peek_definition<cr>", opts)
+		-- keymap("n", "<leader>lrn", "<cmd>Lspsaga rename<cr>", opts)
+		-- keymap({ "n", "v" }, "<leader>lca", "<cmd>Lspsaga code_action<cr>", opts)
+		-- keymap("n", "gr", "<cmd>Lspsaga finder<cr>", opts)
+		-- -- keymap({ 'n', 't' }, '<leader>tt', '<cmd>Lspsaga term_toggle<cr>', opts)
+		-- keymap("n", "<leader>lo", "<cmd>Lspsaga outline<cr>", opts)
+		-- keymap("n", "<leader>lf", function()
+		-- 	vim.lsp.buf.format({ async = true })
+		-- end, opts)
+		--
+		map("gd", require("telescope.builtin").lsp_definitions, "Goto definition")
+		map("gr", require("telescope.builtin").lsp_references, "Goto references")
+		map("gI", require("telescope.builtin").lsp_implementations, "Goto implementation")
+		map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type definition")
+		map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document symbols")
+		map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
+		map("<leader>rn", vim.lsp.buf.rename, "Rename")
+		map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+		map("<leader>f", function()
+			require("conform").format({ bufnr = event.buf })
+		end, "Format buffer")
+		map("K", vim.lsp.buf.hover, "Hover Documentation")
+		map("gD", vim.lsp.buf.declaration, "Goto declaration")
+
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
+		if client and client.server_capabilities.documentHighlightProvider then
+			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+				buffer = event.buf,
+				callback = vim.lsp.buf.document_highlight,
+			})
+
+			vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+				buffer = event.buf,
+				callback = vim.lsp.buf.clear_references,
+			})
+		end
+	end,
 })
 
--- NavBuddy
-keymap.set("n", "<leader>nb", "<cmd>Navbuddy<cr>")
-
--- Toggleterm
-function _G.set_terminal_keymaps()
-  local opts = { buffer = 0 }
-  -- keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-  -- keymap.set("t", "jk", [[<C-\><C-n>]], opts)
-  keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-  keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-  keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-  keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-  keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
-end
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-
--- local maketargets = function ()
---  return vim.fn.systemlist([[make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | grep -v Makefile | sort -u]])
--- end
-
 -- Exec
-keymap.set("n", "<leader>dm", function()
-  -- vim.ui.select(maketargets(), {}, function (target)
-  --   vim.cmd("AsyncRun -mode=term make " .. target)
-  -- end)
-  vim.ui.input({ prompt = "Target" }, function(target)
-    if not target then
-      return
-    end
-    vim.cmd("AsyncRun -mode=term make " .. target)
-    -- require('harpoon.term').sendCommand(1, "make " .. target)
-    -- require('harpoon.term').gotoTerminal(1)
-  end)
+keymap("n", "<leader>dm", function()
+	vim.ui.input({ prompt = "Target" }, function(target)
+		if not target then
+			return
+		end
+		vim.cmd("AsyncRun -mode=term make " .. target)
+	end)
 end)
-keymap.set("n", "<leader>dd", function()
-  vim.ui.input({ prompt = "Executable" }, function(target)
-    if not target then
-      return
-    end
-    if target == "" then
-      -- relative path and no file extension
-      target = vim.fn.expand("%:p:r") .. ".out"
-    else
-      target = vim.fn.expand("%:p:h") .. "/" .. target
-    end
-    vim.cmd("AsyncRun -mode=term '" .. target .. "'")
-  end)
+
+keymap("n", "<leader>dd", function()
+	vim.ui.input({ prompt = "Executable" }, function(target)
+		if not target then
+			return
+		end
+		if target == "" then
+			-- relative path and no file extension
+			target = vim.fn.expand("%:p:r") .. ".out"
+		else
+			target = vim.fn.expand("%:p:h") .. "/" .. target
+		end
+		vim.cmd("AsyncRun -mode=term '" .. target .. "'")
+	end)
 end)
 
 -- Open
-keymap.set("n", "<leader>of", "<cmd>! open '%:h' <cr>")
-keymap.set("n", "<leader>op", "<cmd>! open '%:p:r.pdf' <cr>")
+keymap("n", "<leader>of", "<cmd>! open '%:h' <cr>", { desc = "Open current file in Finder" })
+keymap("n", "<leader>op", "<cmd>! open '%:p:r.pdf' <cr>", { desc = "Open current file as PDF" })
 
 -- Git
-keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>")
-keymap.set("n", "<leader>gs", "<cmd>Git<cr>")
-keymap.set("n", "<leader>gh", "<cmd>! gh browse <cr>")
+keymap("n", "<leader>gg", "<cmd>LazyGit<cr>")
+keymap("n", "<leader>gs", "<cmd>Git<cr>")
+keymap("n", "<leader>gh", "<cmd>! gh browse <cr>")
 
 -- Harpoon
-keymap.set("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
-keymap.set("n", "<leader>hf", "<cmd>Telescope harpoon marks<cr>")
-keymap.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>")
-keymap.set("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
-keymap.set("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
-keymap.set("n", "<leader>1", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
-keymap.set("n", "<leader>2", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>")
-keymap.set("n", "<leader>3", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>")
-keymap.set("n", "<leader>4", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>")
-keymap.set("n", "<leader>5", "<cmd>lua require('harpoon.ui').nav_file(5)<cr>")
-keymap.set("n", "<leader>6", "<cmd>lua require('harpoon.ui').nav_file(6)<cr>")
-keymap.set("n", "<leader>7", "<cmd>lua require('harpoon.ui').nav_file(7)<cr>")
-keymap.set("n", "<leader>8", "<cmd>lua require('harpoon.ui').nav_file(8)<cr>")
-keymap.set("n", "<leader>9", "<cmd>lua require('harpoon.ui').nav_file(9)<cr>")
+keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
+keymap("n", "<leader>hf", "<cmd>Telescope harpoon marks<cr>")
+keymap("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>")
+keymap("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
+keymap("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
+keymap("n", "<leader>1", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
+keymap("n", "<leader>2", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>")
+keymap("n", "<leader>3", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>")
+keymap("n", "<leader>4", "<cmd>lua require('harpoon.ui').nav_file(4)<cr>")
+keymap("n", "<leader>5", "<cmd>lua require('harpoon.ui').nav_file(5)<cr>")
+keymap("n", "<leader>6", "<cmd>lua require('harpoon.ui').nav_file(6)<cr>")
+keymap("n", "<leader>7", "<cmd>lua require('harpoon.ui').nav_file(7)<cr>")
+keymap("n", "<leader>8", "<cmd>lua require('harpoon.ui').nav_file(8)<cr>")
+keymap("n", "<leader>9", "<cmd>lua require('harpoon.ui').nav_file(9)<cr>")
 
 -- Trouble
-keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
-keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
-keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
-keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
-keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
-keymap.set("n", "<leader>xx", "<cmd>TroubleToggle quickfix<cr>")
-keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>")
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
+keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
+keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
+keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
+keymap("n", "<leader>xx", "<cmd>TroubleToggle quickfix<cr>")
+keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>")
 
 -- Icon picker
-keymap.set("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>")
-keymap.set("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>")
-
--- Luasnip
-keymap.set({"i", "s"}, "<C-k>", function ()
-  local ls = require("luasnip")
-  if ls.expand_or_jumpable() then
-    ls.expand_or_jump()
-  end
-end, { silent = true })
-
-keymap.set({"i", "s"}, "<C-j>", function ()
-  local ls = require("luasnip")
-  if ls.jumpable(-1) then
-    ls.jump(-1)
-  end
-end, { silent = true })
+keymap("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>")
+keymap("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>")

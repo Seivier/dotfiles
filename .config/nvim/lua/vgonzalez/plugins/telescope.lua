@@ -1,16 +1,20 @@
 local M = {
   "nvim-telescope/telescope.nvim",
+  event = "VimEnter",
   branch = "0.1.x",
-  cmd = "Telescope",
 }
 
 M.dependencies = {
   "nvim-lua/plenary.nvim",
   -- Extensions
   {
-    "nvim-telescope/telescope-frecency.nvim",
-    dependencies = { "kkharji/sqlite.lua" },
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+    cond = function()
+      return vim.fn.executable("make") == 1
+    end,
   },
+  { "nvim-telescope/telescope-ui-select.nvim" },
   {
     "gbrlsnchs/telescope-lsp-handlers.nvim",
   },
@@ -24,17 +28,10 @@ M.dependencies = {
       "norcalli/nvim-terminal.lua",
     },
   },
-  {
-    "tsakirist/telescope-lazy.nvim",
-  },
-  {
-    "sopa0/telescope-makefile",
-  },
 }
 
 M.config = function()
-  local tel = require("telescope")
-  tel.setup({
+  require("telescope").setup({
     defaults = {
       mappings = {
         i = {
@@ -47,15 +44,18 @@ M.config = function()
         },
       },
     },
-    extensions = {},
+    extensions = {
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown(),
+      },
+    },
   })
 
-  tel.load_extension("frecency")
-  tel.load_extension("lsp_handlers")
-  tel.load_extension("file_browser")
-  tel.load_extension("tmux")
-  tel.load_extension("lazy")
-  tel.load_extension("harpoon")
+  pcall(require("telescope").load_extension, "fzf")
+  pcall(require("telescope").load_extension, "lsp_handlers")
+  pcall(require("telescope").load_extension, "file_browser")
+  pcall(require("telescope").load_extension, "tmux")
+  pcall(require("telescope").load_extension, "harpoon")
 end
 
 return M

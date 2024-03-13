@@ -2,6 +2,7 @@ local opt = vim.opt
 local g = vim.g
 
 g.mapleader = " "
+g.maplocalleader = " "
 
 -- numericos
 opt.number = true
@@ -16,12 +17,14 @@ opt.smarttab = true
 opt.autoindent = true
 
 -- undo
+opt.undofile = true
 
 -- ruler
 opt.ruler = true
 
 -- wrap
 opt.wrap = false
+opt.breakindent = true
 
 -- mouse
 opt.mouse = "a"
@@ -30,27 +33,29 @@ opt.mouse = "a"
 opt.encoding = "utf-8"
 
 -- popup
-opt.pumwidth = 15
-opt.pumheight = 10
+-- opt.pumwidth = 15
+-- opt.pumheight = 10
 
 -- cursor
 opt.cursorline = true
 
 -- appearance
 opt.termguicolors = true
-opt.background = "dark"
+-- opt.background = "dark"
 opt.signcolumn = "yes"
 -- opt.colorcolumn = "100"
-opt.scrolloff = 0
+opt.scrolloff = 10
 
 -- update
-opt.updatetime = 800
+opt.updatetime = 250
+opt.timeoutlen = 300
+opt.timeout = true
 
 -- backspace
 opt.backspace = "indent,eol,start"
 
 -- clipboard
-opt.clipboard:append("unnamedplus")
+opt.clipboard = "unnamedplus"
 
 -- windows
 opt.splitright = true
@@ -59,6 +64,7 @@ opt.equalalways = true
 
 -- show commands (??)
 opt.showcmd = true
+opt.showmode = false
 
 -- autoreload
 opt.autoread = true
@@ -66,26 +72,37 @@ opt.autoread = true
 -- search
 opt.hlsearch = true
 opt.incsearch = true
+opt.inccommand = "split"
 opt.ignorecase = true
 opt.smartcase = true
 opt.showmatch = true
 
 -- buffers
-opt.hidden = true
+-- opt.hidden = true
 
 -- fold
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldenable = false
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- opt.foldenable = false
 
 -- Netrw
--- g.loaded_netrw = 1
--- g.loaded_netrwPlugin = 1
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 
 -- Completion
-opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
+-- opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
 
 -- Spell checking
 opt.spelllang = "en,es"
 opt.spell = true
 
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
