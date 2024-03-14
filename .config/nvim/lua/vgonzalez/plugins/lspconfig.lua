@@ -34,7 +34,6 @@ local M = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-
 	},
 	-- { "folke/neodev.nvim",              opts = {} },
 	-- { "jose-elias-alvarez/null-ls.nvim" },
@@ -82,6 +81,11 @@ M.config = function()
 			function(server_name)
 				local server = servers[server_name] or {}
 				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+				server.on_attach = function(client, bufnr)
+					if client.server_capabilities.documentSymbolProvider then
+						require("nvim-navic").attach(client, bufnr)
+					end
+				end
 				require("lspconfig")[server_name].setup(server)
 			end,
 		},

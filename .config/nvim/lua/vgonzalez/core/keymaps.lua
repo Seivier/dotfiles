@@ -17,21 +17,19 @@ keymap("n", "<leader>we", "<C-w>=", { desc = "Resize all windows" })
 keymap("n", "<leader>wz", "<cmd>resize | vertical resize<cr>", { desc = "Zoom this window" })
 --
 -- buffers
-keymap("n", "<Tab>", "<cmd>b#<cr>") -- bnext
-keymap("n", "<S-Tab>", "<cmd>bd<cr>") -- bprevious
-keymap("n", "<leader>bx", "<cmd>!bd<cr>")
+keymap("n", "<Tab>", "<cmd>bn<cr>", {desc = "Next buffer"}) -- bnext
+keymap("n", "<S-Tab>", "<cmd>bp<cr>", {desc = "Previous buffer"}) -- bprevious
+keymap("n", "<leader>bx", "<cmd>!bd<cr>", {desc = "Close this buffer"})
 keymap("n", "<leader>bg", function()
 	local num = vim.fn.input("Buffer number: ")
 	vim.cmd("b" .. num)
-end)
-keymap("n", "<leader>bn", "<cmd>bn<cr>")
-keymap("n", "<leader>bp", "<cmd>bp<cr>")
+end, {desc = "Go to buffer"})
 
 -- tabs
-keymap("n", "<leader>tn", "<cmd>tabnext<cr>") -- tab
-keymap("n", "<leader>tp", "<cmd>tabprevious<cr>") -- s-tab?
-keymap("n", "<leader>to", "<cmd>tabnew<cr>")
-keymap("n", "<leader>tx", "<cmd>tabclose<cr>")
+keymap("n", "<leader>tn", "<cmd>tabnext<cr>", {desc = "Next tab"}) -- tab
+keymap("n", "<leader>tp", "<cmd>tabprevious<cr>", {desc = "Previous tab"}) -- s-tab?
+keymap("n", "<leader>to", "<cmd>tabnew<cr>", {desc = "New tab"})
+keymap("n", "<leader>tx", "<cmd>tabclose<cr>", {desc = "Close tab"})
 
 -- Telescope
 keymap("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Search help" })
@@ -69,7 +67,7 @@ keymap("n", "<leader>sn", function()
 end, { desc = "Search neofiles" })
 
 -- Neotree
-keymap("n", "<leader>nt", "<cmd>Neotree toggle position=right<cr>")
+keymap("n", "<leader>f", "<cmd>Neotree toggle<cr>", {desc = "Open explorer"})
 
 -- LSP
 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
@@ -112,12 +110,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("gd", require("telescope.builtin").lsp_definitions, "Goto definition")
 		map("gr", require("telescope.builtin").lsp_references, "Goto references")
 		map("gI", require("telescope.builtin").lsp_implementations, "Goto implementation")
-		map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type definition")
-		map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document symbols")
-		map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
-		map("<leader>rn", vim.lsp.buf.rename, "Rename")
-		map("<leader>ca", vim.lsp.buf.code_action, "Code action")
-		map("<leader>f", function()
+		map("<leader>lD", require("telescope.builtin").lsp_type_definitions, "Type definition")
+		map("<leader>ld", require("telescope.builtin").lsp_document_symbols, "Document symbols")
+		map("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
+		map("<leader>lr", vim.lsp.buf.rename, "Rename")
+		map("<leader>lc", vim.lsp.buf.code_action, "Code action")
+		map("<leader>lf", function()
 			require("conform").format({ bufnr = event.buf })
 		end, "Format buffer")
 		map("K", vim.lsp.buf.hover, "Hover Documentation")
@@ -139,16 +137,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Exec
-keymap("n", "<leader>dm", function()
+keymap("n", "<leader>xm", function()
 	vim.ui.input({ prompt = "Target" }, function(target)
 		if not target then
 			return
 		end
 		vim.cmd("AsyncRun -mode=term make " .. target)
 	end)
-end)
+end, {desc = "Execute make rule"})
 
-keymap("n", "<leader>dd", function()
+keymap("n", "<leader>xd", function()
 	vim.ui.input({ prompt = "Executable" }, function(target)
 		if not target then
 			return
@@ -161,23 +159,23 @@ keymap("n", "<leader>dd", function()
 		end
 		vim.cmd("AsyncRun -mode=term '" .. target .. "'")
 	end)
-end)
+end, {desc = "Execute this file"})
 
 -- Open
 keymap("n", "<leader>of", "<cmd>! open '%:h' <cr>", { desc = "Open current file in Finder" })
 keymap("n", "<leader>op", "<cmd>! open '%:p:r.pdf' <cr>", { desc = "Open current file as PDF" })
 
 -- Git
-keymap("n", "<leader>gg", "<cmd>LazyGit<cr>")
-keymap("n", "<leader>gs", "<cmd>Git<cr>")
-keymap("n", "<leader>gh", "<cmd>! gh browse <cr>")
+keymap("n", "<leader>gg", "<cmd>LazyGit<cr>", {desc = "Open LazyGit"})
+keymap("n", "<leader>gs", "<cmd>Git<cr>", {desc = "Git status"})
+keymap("n", "<leader>gh", "<cmd>! gh browse <cr>", {desc= "Open GitHub"})
 
 -- Harpoon
-keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
-keymap("n", "<leader>hf", "<cmd>Telescope harpoon marks<cr>")
-keymap("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>")
-keymap("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
-keymap("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
+keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", {desc = "Harpoon menu"})
+keymap("n", "<leader>sm", "<cmd>Telescope harpoon marks<cr>", {desc = "Search harpoon marks"})
+keymap("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>", {desc = "Add mark to harpoon"})
+keymap("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>", {desc = "Next mark"})
+keymap("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", {desc = "Previous mark"})
 keymap("n", "<leader>1", "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
 keymap("n", "<leader>2", "<cmd>lua require('harpoon.ui').nav_file(2)<cr>")
 keymap("n", "<leader>3", "<cmd>lua require('harpoon.ui').nav_file(3)<cr>")
@@ -188,15 +186,7 @@ keymap("n", "<leader>7", "<cmd>lua require('harpoon.ui').nav_file(7)<cr>")
 keymap("n", "<leader>8", "<cmd>lua require('harpoon.ui').nav_file(8)<cr>")
 keymap("n", "<leader>9", "<cmd>lua require('harpoon.ui').nav_file(9)<cr>")
 
--- Trouble
-keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
-keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
-keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
-keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
-keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
-keymap("n", "<leader>xx", "<cmd>TroubleToggle quickfix<cr>")
-keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>")
-
 -- Icon picker
-keymap("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>")
-keymap("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>")
+keymap("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>", {desc = "Choose an emoji"})
+keymap("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>", {desc = "Choose an nerd icon"})
+

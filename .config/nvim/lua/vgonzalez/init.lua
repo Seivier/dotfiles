@@ -18,12 +18,12 @@ require("lazy").setup({
 	-- notify
 	{
 		"rcarriga/nvim-notify",
-		config = function ()
-			require('notify').setup({
-				background_colour = "#000000"
+		config = function()
+			require("notify").setup({
+				background_colour = "#000000",
 			})
 			vim.notify = require("notify")
-		end
+		end,
 	},
 
 	-- transparency
@@ -81,9 +81,9 @@ require("lazy").setup({
 
 	-- -- auto pairs
 	{
-	  "windwp/nvim-autopairs",
-	  event = "InsertEnter",
-	  opts = {}, -- this is equalent to setup({}) function
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {}, -- this is equalent to setup({}) function
 	},
 
 	-- TODO icons
@@ -119,7 +119,7 @@ require("lazy").setup({
 				change = { text = "~" },
 				delete = { text = "_" },
 				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
+			changedelete = { text = "~" },
 			},
 		},
 	},
@@ -127,10 +127,8 @@ require("lazy").setup({
 	-- harpoon
 	{
 		"ThePrimeagen/harpoon",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		lazy = false,
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
 	-- lazygit
