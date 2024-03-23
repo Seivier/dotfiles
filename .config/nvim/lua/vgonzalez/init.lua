@@ -12,7 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("vgonzalez.core")
-
 require("lazy").setup({
 	-- MINOR --
 	-- notify
@@ -119,7 +118,7 @@ require("lazy").setup({
 				change = { text = "~" },
 				delete = { text = "_" },
 				topdelete = { text = "‾" },
-			changedelete = { text = "~" },
+				changedelete = { text = "~" },
 			},
 		},
 	},
@@ -129,6 +128,9 @@ require("lazy").setup({
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("harpoon"):setup()
+		end,
 	},
 
 	-- lazygit
@@ -143,6 +145,21 @@ require("lazy").setup({
 	{
 		"kaarmu/typst.vim",
 		ft = "typst",
+		lazy = false,
+		config = function ()
+			vim.g.typst_conceal = 3
+		end
+	},
+
+	-- harpoon for lualine
+	{
+		"letieu/harpoon-lualine",
+		dependencies = {
+			{
+				"ThePrimeagen/harpoon",
+				branch = "harpoon2",
+			},
+		},
 	},
 
 	-- THEMES --
@@ -182,4 +199,4 @@ require("lazy").setup({
 	},
 })
 
-vim.cmd([[ colorscheme rose-pine]])
+vim.cmd([[colorscheme rose-pine]])

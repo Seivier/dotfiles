@@ -40,10 +40,15 @@ M.config = function()
           ["<C-h>"] = "which_key",
         },
         n = {
-          -- ["o"] = "select_default"
+          ["h"] = "which_key"
         },
       },
     },
+    -- pickers = {
+    --   find_files = {
+    --     hidden = true
+    --   },
+    -- },
     extensions = {
       ["ui-select"] = {
         require("telescope.themes").get_dropdown(),

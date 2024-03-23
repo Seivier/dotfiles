@@ -51,23 +51,25 @@ M.config = function()
 		},
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { { "branch", icon = "" }, "diff" },
-			lualine_c = {
+			lualine_b = {
+				{ "branch", icon = "" },
 				{
 					"diagnostics",
-					sources = { "nvim_lsp" },
+					sources = { "nvim_lsp", "nvim_diagnostic" },
 					sections = { "error", "warn", "info", "hint" },
-					diagnostics_color = {
-						error = "DiagnosticError", -- Changes diagnostics' error color.
-						warn = "DiagnosticWarn", -- Changes diagnostics' warn color.
-						info = "DiagnosticInfo", -- Changes diagnostics' info color.
-						hint = "DiagnosticHint", -- Changes diagnostics' hint color.
-					},
+					-- diagnostics_color = {
+					-- 	error = "DiagnosticError", -- Changes diagnostics' error color.
+					-- 	warn = "DiagnosticWarn", -- Changes diagnostics' warn color.
+					-- 	info = "DiagnosticInfo", -- Changes diagnostics' info color.
+					-- 	hint = "DiagnosticHint", -- Changes diagnostics' hint color.
+					-- },
 					symbols = { error = " ", warn = " ", info = " ", hint = "󰘥 " },
-					colored = true, -- Displays diagnostics status in color if set to true.
-					update_in_insert = false, -- Update diagnostics in insert mode.
 					always_visible = true, -- Show diagnostics even if there are none.
 				},
+			},
+			lualine_c = {
+				"%=",
+				{ "harpoon2", separator = " " },
 			},
 			lualine_x = {},
 			lualine_y = { "filetype", "encoding", "progress" },
@@ -83,7 +85,7 @@ M.config = function()
 		},
 		winbar = {
 			lualine_a = {},
-			lualine_b = { { "filename", path = 1 } },
+			lualine_b = { { "filename", path = 1, shorting_target = 200 } },
 			lualine_c = { { "navic", color_correction = nil } },
 			lualine_x = { { get_last_buffer_filename, icon = "󰁯" } },
 			lualine_y = {},

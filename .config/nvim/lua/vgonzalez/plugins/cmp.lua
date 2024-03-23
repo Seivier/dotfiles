@@ -64,32 +64,13 @@ M.config = function()
 		--   documentation = cmp.config.window.bordered(),
 		-- },
 		mapping = {
-			["<Tab>"] = cmp.mapping(function(fallback)
-				-- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-				if cmp.visible() and has_words_before then
-					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-				-- elseif luasnip.expand_or_jumpable() then
-				--   luasnip.expand_or_jump()
-				elseif has_words_before() then
-					cmp.complete()
-				else
-					fallback()
-				end
-			end, { "i", "s", "c" }),
-			["<S-Tab>"] = cmp.mapping(function(fallback)
-				if cmp.visible() then
-					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-				-- elseif luasnip.jumpable(-1) then
-				--   luasnip.jump(-1)
-				else
-					fallback()
-				end
-			end, { "i", "s", "c" }),
-			["<CR>"] = cmp.mapping.confirm({
-				behavior = cmp.ConfirmBehavior.Replace,
-				select = false,
-			}),
+			["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+			["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+			["<C-b>"] = cmp.mapping.scroll_docs(-4),
+			["<C-f>"] = cmp.mapping.scroll_docs(4),
 			["<C-c>"] = cmp.mapping.complete(),
+			["<C-e>"] = cmp.mapping.abort(),
+			["<CR>"] = cmp.mapping.confirm({ select = true }),
 			["<C-l>"] = cmp.mapping(function()
 				if luasnip.expand_or_locally_jumpable() then
 					luasnip.expand_or_jump()

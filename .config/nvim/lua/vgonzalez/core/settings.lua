@@ -96,6 +96,9 @@ g.loaded_netrwPlugin = 1
 opt.spelllang = "en,es"
 opt.spell = true
 
+-- Fancy text for md and typst
+opt.conceallevel = 3
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -105,4 +108,24 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank()
 	end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	desc = "Activate wrap for Latex, Typst and Markdown",
+	group = vim.api.nvim_create_augroup("enter-wrap-text", {clear = true}),
+	callback = function (opts)
+		if vim.bo[opts.buf].filetype == 'typst' then
+			vim.opt.wrap = true
+		end
+	end
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+	desc = "Activate wrap for Latex, Typst and Markdown",
+	group = vim.api.nvim_create_augroup("leave-wrap-text", {clear = true}),
+	callback = function (opts)
+		if vim.bo[opts.buf].filetype == 'typst' then
+			vim.opt.wrap = false
+		end
+	end
 })
