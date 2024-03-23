@@ -1,4 +1,4 @@
-# Download Znap, if it's not there yet.
+
 [[ -r ~/git/znap/znap.zsh ]] ||
     git clone --depth 1 -- \
         https://github.com/marlonrichert/zsh-snap.git ~/git/znap
@@ -20,6 +20,7 @@ znap source zsh-users/zsh-syntax-highlighting
 export DEV="/Volumes/Dev/"
 export UNI="$DEV/Universidad"
 export EDITOR="nvim"
+export PATH="/home/vgonzalez/bin/:$PATH"
 
 # aliases
 alias ls="eza"
