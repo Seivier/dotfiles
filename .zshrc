@@ -17,10 +17,12 @@ znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 
 # vars
-export DEV="/Volumes/Dev/"
+export DEV="/run/media/vgonzalez/Dev"
 export UNI="$DEV/Universidad"
 export EDITOR="nvim"
-export PATH="/home/vgonzalez/bin/:$PATH"
+export PATH="/home/vgonzalez/bin/:~/.local/bin/:$PATH"
+export CC="/usr/bin/clang"
+export CXX="/usr/bin/clang++"
 
 # aliases
 alias ls="eza"
@@ -35,27 +37,11 @@ alias muxn="tmuxinator new"
 alias muxo="tmuxinator open"
 alias restart="exec zsh"
 alias cls="clear"
+alias open="xdg-open"
 
 # zeoxide
 eval "$(zoxide init --cmd cd zsh)"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# opam configuration
-[[ ! -r /Users/vgonzalez/.opam/opam-init/init.zsh ]] || source /Users/vgonzalez/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 # lfcd
 # USE LF TO SWITCH DIRECTORIES AND BIND IT TO CTRL-O

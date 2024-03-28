@@ -1,8 +1,7 @@
 # /Users/vgonzalez/.config/tmuxinator/gpu.yml
 
 name: gpu
-root: /Volumes/Dev/Universidad/Computación en GPU/
-
+root: ~/Documents/Dev/Universidad/Computación en GPU/
 # Optional tmux socket
 # socket_name: foo
 
@@ -45,10 +44,4 @@ root: /Volumes/Dev/Universidad/Computación en GPU/
 # attach: false
 
 windows:
-  - main:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - nvim .
+  - repo: nvim CC7515-24O

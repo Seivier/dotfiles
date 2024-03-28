@@ -1,9 +1,9 @@
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !/usr/bin/gh auth git-credential
 [user]
 	email = vicentegonzalez@ug.uchile.cl
 	name = Vicente González
@@ -11,3 +11,9 @@
 	autocrlf = input
 [pull]
 	rebase = false
+[safe]
+	directory = run/media/vgonzalez/Dev
+	directory = /run/media/vgonzalez/Dev
+	directory = /run/media/vgonzalez/Dev/Universidad/Trabajo de Tesis I/3D-GPolylla
+	directory = /run/media/vgonzalez/Dev/*
+	directory = *

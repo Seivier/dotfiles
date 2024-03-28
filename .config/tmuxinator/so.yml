@@ -1,8 +1,7 @@
 # /Users/vgonzalez/.config/tmuxinator/so.yml
 
 name: so
-root: /Volumes/Dev/Universidad/Sistemas Operativos/
-
+root: ~/Documents/Dev/Universidad/Sistemas Operativos/
 # Optional tmux socket
 # socket_name: foo
 
@@ -45,11 +44,4 @@ root: /Volumes/Dev/Universidad/Sistemas Operativos/
 # attach: false
 
 windows:
-  - main:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - nvim
-  - old: nvim CC4302-Material
+  - repo: nvim CC4302-Material

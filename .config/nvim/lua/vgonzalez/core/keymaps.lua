@@ -165,8 +165,8 @@ keymap("n", "<leader>xd", function()
 end, { desc = "Execute this file" })
 
 -- Open
-keymap("n", "<leader>of", "<cmd>! open '%:h' <cr>", { desc = "Open current file in Finder" })
-keymap("n", "<leader>op", "<cmd>! open '%:p:r.pdf' <cr>", { desc = "Open current file as PDF" })
+keymap("n", "<leader>of", "<cmd>! xdg-open '%:h' <cr>", { desc = "Open current file in Finder" })
+keymap("n", "<leader>op", "<cmd>! xdg-open '%:p:r.pdf' <cr>", { desc = "Open current file as PDF" })
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })

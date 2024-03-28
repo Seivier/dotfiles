@@ -59,3 +59,9 @@ windows:
   - zsh:
       panes:
         - nvim .zshrc
+
+  - term:
+      root: ~/.config/wezterm/
+      panes:
+        - nvim wezterm.lua
+        

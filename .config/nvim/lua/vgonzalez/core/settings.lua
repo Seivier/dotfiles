@@ -93,11 +93,12 @@ g.loaded_netrwPlugin = 1
 -- opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
 
 -- Spell checking
-opt.spelllang = "en,es"
-opt.spell = true
+-- opt.spelllang = "en,es"
+-- opt.spell = true
+
 
 -- Fancy text for md and typst
-opt.conceallevel = 3
+opt.conceallevel = 2
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
