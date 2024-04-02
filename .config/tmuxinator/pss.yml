@@ -1,7 +1,7 @@
 # /Users/vgonzalez/.config/tmuxinator/pss.yml
 
 name: pss
-root: /Volumes/Dev/Universidad/Programación de Software de Sistemas/
+root: ~/Documents/Dev/Universidad/Programación de Software de Sistemas/
 
 # Optional tmux socket
 # socket_name: foo

@@ -43,14 +43,16 @@ keymap("n", "<leader>sw", "<cmd>Telescope grep_string<cr>", { desc = "Search cur
 keymap("n", "<leader>sg", "<cmd>Telescope live_grep<cr>", { desc = "Search by grep" })
 keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "Search diagnostics" })
 keymap("n", "<leader>sr", "<cmd>Telescope resume<cr>", { desc = "Search resume" })
-keymap("n", "<leader>s.", "<cmd>Telescope oldfiles<cr>", { desc = "Search Recent Files" })
-keymap("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", { desc = "Find existing buffers" })
+keymap("n", "<leader>so", "<cmd>Telescope oldfiles<cr>", { desc = "Search Recent Files" })
+-- keymap("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", { desc = "Find existing buffers" })
 keymap("n", "<leader>sb", "<cmd>Telescope buffers<cr>", { desc = "Search buffers" })
 keymap("n", "<leader>se", "<cmd>Telescope file_browser<cr>", { desc = "Open browser" })
-keymap("n", "<leader>sts", "<cmd>Telescope tmux sessions<cr>", { desc = "Search tmux sessions" })
-keymap("n", "<leader>stw", "<cmd>Telescope tmux windows<cr>", { desc = "Search tmux windows" })
 
-keymap("n", "<leader>/", function()
+-- Tmux
+keymap("n", "<leader>us", "<cmd>Telescope tmux sessions<cr>", { desc = "Search tmux sessions" })
+keymap("n", "<leader>uw", "<cmd>Telescope tmux windows<cr>", { desc = "Search tmux windows" })
+
+keymap("n", "<leader><leader>", function()
 	-- You can pass additional configuration to telescope to change theme, layout, etc.
 	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 		winblend = 10,
@@ -58,7 +60,7 @@ keymap("n", "<leader>/", function()
 	}))
 end, { desc = "Fuzzily search in current buffer" })
 
-keymap("n", "<leader>s/", function()
+keymap("n", "<leader>s.", function()
 	require("telescope.builtin").live_grep({
 		grep_open_files = true,
 		prompt_title = "Live Grep in Open Files",
@@ -71,6 +73,7 @@ end, { desc = "Search neofiles" })
 
 -- Neotree
 keymap("n", "<leader>f", "<cmd>Neotree toggle<cr>", { desc = "Open explorer" })
+
 
 -- LSP
 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
@@ -123,6 +126,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, "Format buffer")
 		map("K", vim.lsp.buf.hover, "Hover Documentation")
 		map("gD", vim.lsp.buf.declaration, "Goto declaration")
+		map("<leader>ln", "<cmd>Navbuddy<cr>", "Navigate to symbol")
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if client and client.server_capabilities.documentHighlightProvider then
@@ -196,4 +200,6 @@ keymap("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>", { desc = "Choose 
 -- Reload config
 keymap("n", "<leader>r", "<cmd>source $MYVIMRC<cr>", {desc = "Reload config"})
 
+-- Copilot
+keymap("i", "<C-c>", 'copilot#Accept("\\<CR>")', {expr = true, replace_keycodes = false})
 

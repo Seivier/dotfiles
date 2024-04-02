@@ -14,16 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 require("vgonzalez.core")
 require("lazy").setup({
 	-- MINOR --
-	-- notify
-	{
-		"rcarriga/nvim-notify",
-		config = function()
-			require("notify").setup({
-				background_colour = "#000000",
-			})
-			vim.notify = require("notify")
-		end,
-	},
 
 	-- transparency
 	"xiyaowong/transparent.nvim",
@@ -103,24 +93,17 @@ require("lazy").setup({
 	{
 		"apzelos/blamer.nvim",
 		lazy = false,
-		config = function()
+		init = function()
 			vim.g.blamer_enabled = true
-			vim.g.blamer_delay = 100
+			vim.g.blamer_delay = 500
+			vim.g.blamer_show_in_insert_modes = false
 		end,
 	},
 
 	-- gitsigns
 	{
 		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
+		opts = {},
 	},
 
 	-- harpoon
@@ -130,6 +113,7 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("harpoon"):setup()
+
 		end,
 	},
 
@@ -146,9 +130,10 @@ require("lazy").setup({
 		"kaarmu/typst.vim",
 		ft = "typst",
 		lazy = false,
-		config = function ()
+		config = function()
 			vim.g.typst_conceal = 3
-		end
+			vim.g.typst_embedded_languages = { "cpp", "c", "make", "python", "scala" }
+		end,
 	},
 
 	-- harpoon for lualine
@@ -162,6 +147,20 @@ require("lazy").setup({
 		},
 	},
 
+	-- autosave
+	{
+		"Pocco81/auto-save.nvim",
+		lazy = false,
+	},
+
+	-- autosessions
+	{
+		"rmagatti/auto-session",
+		config = function()
+			require("auto-session").setup()
+		end,
+	},
+
 	-- THEMES --
 	{
 		"catppuccin/nvim",
@@ -169,34 +168,51 @@ require("lazy").setup({
 		priority = 1000,
 	},
 	{
-		"morhetz/gruvbox",
-		priority = 1000,
-	},
-	{
 		"rose-pine/neovim",
 		name = "rose-pine",
 		priority = 1000,
-		opts = {
-			styles = {
-				-- transparency = true,
-			},
-		},
 	},
 	{
 		"folke/tokyonight.nvim",
 		priority = 1000,
-		opts = {},
 	},
-
+	{
+		"rebelot/kanagawa.nvim",
+		priority = 1000,
+	},
+	{
+		"EdenEast/nightfox.nvim",
+		priority = 1000, -- Ensure it loads first
+	},
+	{
+		"sainnhe/everforest",
+		priority = 1000,
+	},
+	{
+		"projekt0n/github-nvim-theme",
+		priority = 1000,
+	},
+	{
+		"sainnhe/gruvbox-material",
+		priority = 1000,
+	},
+	{
+		"sainnhe/sonokai",
+		priority = 1000,
+	},
+	{
+		"navarasu/onedark.nvim",
+		priority = 1000,
+	},
 	{ import = "vgonzalez.plugins" },
 }, {
 	change_detection = {
 		enabled = true,
-		notify = true,
+		notify = false,
 	},
 	install = {
 		colorscheme = { "rose-pine" },
 	},
 })
 
-vim.cmd([[colorscheme rose-pine]])
+vim.cmd([[colorscheme tokyonight-night]])

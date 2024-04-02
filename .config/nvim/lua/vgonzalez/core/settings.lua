@@ -33,7 +33,7 @@ opt.mouse = "a"
 opt.encoding = "utf-8"
 
 -- popup
--- opt.pumwidth = 15
+-- opt.pumwidth = 5
 -- opt.pumheight = 10
 
 -- cursor
@@ -41,7 +41,7 @@ opt.cursorline = true
 
 -- appearance
 opt.termguicolors = true
--- opt.background = "dark"
+opt.background = "dark"
 opt.signcolumn = "yes"
 -- opt.colorcolumn = "100"
 opt.scrolloff = 10
@@ -93,9 +93,11 @@ g.loaded_netrwPlugin = 1
 -- opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
 
 -- Spell checking
--- opt.spelllang = "en,es"
--- opt.spell = true
+opt.spell = true
+opt.spelllang = "en,es"
 
+-- Sessions
+opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Fancy text for md and typst
 opt.conceallevel = 2
@@ -122,6 +124,16 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 vim.api.nvim_create_autocmd("BufLeave", {
+	desc = "Activate wrap for Latex, Typst and Markdown",
+	group = vim.api.nvim_create_augroup("leave-wrap-text", {clear = true}),
+	callback = function (opts)
+		if vim.bo[opts.buf].filetype == 'typst' then
+			vim.opt.wrap = false
+		end
+	end
+})
+
+vim.api.nvim_create_autocmd("InsertLeave", {
 	desc = "Activate wrap for Latex, Typst and Markdown",
 	group = vim.api.nvim_create_augroup("leave-wrap-text", {clear = true}),
 	callback = function (opts)

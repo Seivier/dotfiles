@@ -1,7 +1,7 @@
 # /Users/vgonzalez/.config/tmuxinator/memes.yml
 
 name: memes
-root: /Volumes/Dev/Universidad/Metodologías de Diseño y Programación/
+root: ~/Dev/Universidad/Metodologías de Diseño y Programación/
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,29 +45,4 @@ root: /Volumes/Dev/Universidad/Metodologías de Diseño y Programación/
 # attach: false
 
 windows:
-  - prácticas:
-      root: /Volumes/Dev/Universidad/Metodologías de Diseño y Programación/Auxiliares/Prácticas/
-      layout: main-horizontal
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - nvim .
-        - sbt
-  - expositivas:
-      root: /Volumes/Dev/Universidad/Metodologías de Diseño y Programación/Auxiliares/Expositivas/
-      layout: main-horizontal
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - nvim .
-        - sbt
-  - extra:
-      root: /Volumes/Dev/Universidad/Metodologías de Diseño y Programación/Auxiliares/
-      layout: main-horizontal
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - nvim .
+  - repo: cd cc3002-24o && nvim

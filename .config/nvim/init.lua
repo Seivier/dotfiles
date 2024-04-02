@@ -9,4 +9,5 @@ if hls_status == 0 then
   vim.opt.hlsearch = false
 end
 
+
 require("vgonzalez")

@@ -1,7 +1,7 @@
-# /Users/vgonzalez/.config/tmuxinator/problems.yml
+# /home/vgonzalez/.config/tmuxinator/agiles.yml
 
-name: problems
-root: ~/Documents/Dev/Personal/Problems/
+name: agiles
+root: ~/Documents/Dev/Universidad/Taller de Metodologías Ágiles de Desarrollo de Software/
 
 # Optional tmux socket
 # socket_name: foo
@@ -32,7 +32,7 @@ root: ~/Documents/Dev/Personal/Problems/
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
 
-# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# Change the command to call tmux. This can be used by derivatives/wrappers like byobu.
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
@@ -45,10 +45,4 @@ root: ~/Documents/Dev/Personal/Problems/
 # attach: false
 
 windows:
-  - editor:
-      layout: main-horizontal
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - nvim
+  - repo: cd grupo-de-bigel && nvim

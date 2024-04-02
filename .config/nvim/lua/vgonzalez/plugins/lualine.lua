@@ -38,41 +38,55 @@ M.config = function()
 			return vim.fn.fnamemodify(last_buffer, ":t")
 		end
 	end
+
+	local my_filename = require("lualine.components.filename"):extend()
+	my_filename.apply_icon = require("lualine.components.filetype").apply_icon
+	my_filename.icon_hl_cache = {}
+
+	require("lualine").setup({
+		lualine_c = { { my_filename, colored = true } },
+	})
+
 	require("lualine").setup({
 		options = {
 			theme = "auto",
 			component_separators = "",
-			section_separators = { "", "" },
+			-- round section separtors
+			section_separators = { left = "", right = "" },
 			disabled_filetypes = {
 				statusline = { "Dashboard", "TelescopePrompt" },
 				winbar = { "Dashboard", "TelescopePrompt", "neo-tree", "toggleterm" },
 			},
 			globalstatus = true,
+			always_divide_middle = false,
 		},
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = {
-				{ "branch", icon = "" },
 				{
 					"diagnostics",
 					sources = { "nvim_lsp", "nvim_diagnostic" },
 					sections = { "error", "warn", "info", "hint" },
-					-- diagnostics_color = {
-					-- 	error = "DiagnosticError", -- Changes diagnostics' error color.
-					-- 	warn = "DiagnosticWarn", -- Changes diagnostics' warn color.
-					-- 	info = "DiagnosticInfo", -- Changes diagnostics' info color.
-					-- 	hint = "DiagnosticHint", -- Changes diagnostics' hint color.
-					-- },
-					symbols = { error = " ", warn = " ", info = " ", hint = "󰘥 " },
 					always_visible = true, -- Show diagnostics even if there are none.
 				},
 			},
 			lualine_c = {
-				"%=",
-				{ "harpoon2", separator = " " },
+				{ "filetype", icon_only = true },
+				{
+					"filename",
+					file_status = false,
+					-- path = 1,
+					-- shorting_target = 200
+				},
+				{ "diff", colored = true },
 			},
-			lualine_x = {},
-			lualine_y = { "filetype", "encoding", "progress" },
+			lualine_x = {
+				"harpoon2"
+
+			},
+			lualine_y = {
+				{ "b:gitsigns_head", icon = "" },
+			},
 			lualine_z = { "location" },
 		},
 		inactive_sections = {
@@ -85,7 +99,7 @@ M.config = function()
 		},
 		winbar = {
 			lualine_a = {},
-			lualine_b = { { "filename", path = 1, shorting_target = 200 } },
+			lualine_b = {},
 			lualine_c = { { "navic", color_correction = nil } },
 			lualine_x = { { get_last_buffer_filename, icon = "󰁯" } },
 			lualine_y = {},
@@ -94,7 +108,7 @@ M.config = function()
 		inactive_winbar = {
 			lualine_a = {},
 			lualine_b = {},
-			lualine_c = { { "filename", path = 1 } },
+			lualine_c = { { "filename" } },
 			lualine_x = {},
 			lualine_y = {},
 			lualine_z = {},

@@ -6,7 +6,8 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family      JetBrainsMono NFM
+# font_family      JetBrains Mono 
+font_family      JetBrainsMono Nerd Font
 # font_family      Maple Mono
 # font_family      ComicShannsMono Nerd Font Mono
 # font_family      Comic Code Ligatures
@@ -32,7 +33,7 @@ bold_italic_font auto
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 16.0 
+font_size 10.0 
 
 #: Font size (in pts)
 
@@ -176,7 +177,7 @@ disable_ligatures cursor
 #: placed in the cell. For example::
 
 #:     modify_font cell_width 80%
-modify_font cell_height 100%
+# modify_font cell_height 100%
 #:     modify_font baseline 3
 
 #: Note that modifying the baseline will automatically adjust the
@@ -839,7 +840,7 @@ window_padding_width 10
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-hide_window_decorations titlebar-only
+hide_window_decorations yes
 
 #: Hide the window decorations (title-bar and window borders) with
 #: yes. On macOS, titlebar-only and titlebar-and-corners can be used
@@ -1088,7 +1089,7 @@ hide_window_decorations titlebar-only
 
 #: The foreground and background colors.
 
-background_opacity 0.9
+background_opacity 0.90
 
 #: The opacity of the background. A number between zero and one, where
 #: one is opaque and zero is fully transparent. This will only work if
@@ -1263,7 +1264,7 @@ background_blur 10
 #: --login and --interactive to ensure that the shell starts in
 #: interactive mode and reads its startup rc files.
 
-editor /opt/homebrew/bin/nvim
+editor /usr/bin/nvim
 
 #: The terminal based text editor (such as vim or nano) to use when
 #: editing the kitty config file or similar tasks.
@@ -1533,6 +1534,7 @@ term xterm-kitty
 #: means to use the default system color, a value of background means
 #: to use the background color of the currently active window and
 #: finally you can use an arbitrary color, such as #12af59 or red.
+#
 # macos_titlebar_color background
 
 #: The color of the kitty window's titlebar on macOS. A value of
@@ -2400,6 +2402,6 @@ macos_show_window_title_in all
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# One Dark
 include current-theme.conf
 # END_KITTY_THEME

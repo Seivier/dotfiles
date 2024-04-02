@@ -17,7 +17,7 @@ znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-syntax-highlighting
 
 # vars
-export DEV="/run/media/vgonzalez/Dev"
+export DEV="~/dev"
 export UNI="$DEV/Universidad"
 export EDITOR="nvim"
 export PATH="/home/vgonzalez/bin/:~/.local/bin/:$PATH"

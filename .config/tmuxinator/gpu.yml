@@ -44,4 +44,4 @@ root: ~/Documents/Dev/Universidad/Computación en GPU/
 # attach: false
 
 windows:
-  - repo: nvim CC7515-24O
+  - repo: cd CC7515-24O && nvim

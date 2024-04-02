@@ -2,15 +2,22 @@ local M = {
 	"stevearc/conform.nvim",
 }
 
-M.opts = {
+M.config = {
 	-- format_on_save = {
 	-- 	timeout_ms = 500,
 	-- 	lsp_fallback = true,
 	-- },
 	formatters_by_ft = {
 		lua = { "stylua" },
-		cpp = { "clang_format" },
+		cpp = { "clang-format" },
 		c = { "clang-format" },
+		typst = { "typstfmt" },
+	},
+	formatters = {
+		["clang-format"] = {
+			inherit = true,
+			prepend_args = { "-style=Google" },
+		},
 	},
 }
 

@@ -16,9 +16,17 @@ local servers = {
 			},
 		},
 	}, -- lua
-	clangd = {}, -- c/cpp
+	clangd = {
+		capabilities = {
+			offsetEncoding = "utf-16",
+		},
+	}, -- c/cpp
 	ocamllsp = {}, -- ocaml
-	typst_lsp = {}, -- typst
+	typst_lsp = {
+		settings = {
+			exportPdf = "never",
+		},
+	}, -- typst
 	pyright = {}, -- python
 	html = {}, -- html
 	tsserver = {}, -- typescript & javascript
@@ -34,6 +42,14 @@ local M = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{
+			"SmiteshP/nvim-navbuddy",
+			dependencies = {
+				"SmiteshP/nvim-navic",
+				"MunifTanjim/nui.nvim",
+			},
+			opts = { lsp = { auto_attach = true } },
+		},
 	},
 	-- { "folke/neodev.nvim",              opts = {} },
 	-- { "jose-elias-alvarez/null-ls.nvim" },
@@ -64,7 +80,6 @@ M.config = function()
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-	capabilities.offsetEncoding = "utf-16"
 
 	require("mason").setup()
 
@@ -72,6 +87,7 @@ M.config = function()
 	vim.list_extend(ensure_installed, {
 		"stylua",
 		"clang-format",
+		"typstfmt",
 	})
 
 	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
@@ -80,10 +96,19 @@ M.config = function()
 		handlers = {
 			function(server_name)
 				local server = servers[server_name] or {}
-				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+				server.capabilities = vim.tbl_deep_extend("force", {
+					textDocument = {
+						completion = {
+							completionItem = {
+								snippetSupport = false,
+							},
+						},
+					},
+				}, capabilities, server.capabilities or {})
 				server.on_attach = function(client, bufnr)
 					if client.server_capabilities.documentSymbolProvider then
 						require("nvim-navic").attach(client, bufnr)
+						require("nvim-navbuddy").attach(client, bufnr)
 					end
 				end
 				require("lspconfig")[server_name].setup(server)

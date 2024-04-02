@@ -1,17 +1,11 @@
 local M = {
-  "zbirenbaum/copilot.lua",
-  cmd = "Copilot",
-  event = "InsertEnter",
+	"github/copilot.vim",
+	cmd = "Copilot",
+	event = "InsertEnter",
 }
 
-M.config = function()
-  require("copilot").setup({
-    suggestion = { enabled = false },
-    panel = { enabled = false },
-    filetypes = {
-      typst = false,
-      markdown = false,
-    },
-  })
+M.init = function()
+	vim.g.copilot_no_tab_map = true
 end
+
 return M

@@ -21,22 +21,18 @@ local M = {
 		},
 		"saadparwaiz1/cmp_luasnip",
 		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
 		"hrsh7th/cmp-path",
-		-- "hrsh7th/cmp-nvim-lua",
+		"f3fora/cmp-spell",
+		"hrsh7th/cmp-nvim-lua",
 		-- "hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
-		{
-			"zbirenbaum/copilot-cmp",
-			config = function()
-				require("copilot_cmp").setup()
-			end,
-		},
 		{
 			"onsails/lspkind.nvim",
 			config = function()
 				require("lspkind").init({
 					symbol_map = {
-						Copilot = "",
+						-- Copilot = "",
 					},
 				})
 			end,
@@ -66,9 +62,9 @@ M.config = function()
 		mapping = {
 			["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
 			["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-			["<C-b>"] = cmp.mapping.scroll_docs(-4),
-			["<C-f>"] = cmp.mapping.scroll_docs(4),
-			["<C-c>"] = cmp.mapping.complete(),
+			["<C-j>"] = cmp.mapping.scroll_docs(-4),
+			["<C-k>"] = cmp.mapping.scroll_docs(4),
+			-- ["<C-c>"] = cmp.mapping.complete(),
 			["<C-e>"] = cmp.mapping.abort(),
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
 			["<C-l>"] = cmp.mapping(function()
@@ -83,21 +79,34 @@ M.config = function()
 			end, { "i", "s" }),
 		},
 		sources = {
-			{ name = "copilot" },
+			-- { name = "copilot" },
 			{ name = "nvim_lsp" },
-			{ name = "luasnip" }, -- For luasnip users.
+			{ name = "nvim_lsp_signature_help" },
 			{ name = "nvim_lua" },
+			{ name = "luasnip" }, -- For luasnip users.
 			{ name = "path" },
+			{ name = "spell" },
 		},
+		-- window = {
+		-- 	completion = {
+		-- 		winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+		-- 		col_offset = -3,
+		-- 		side_padding = 0,
+		-- 	},
+		-- },
+		-- formatting = {
+		-- 	fields = { "kind", "abbr", "menu" },
+		-- 	format = function(entry, vim_item)
+		-- 		local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+		-- 		local strings = vim.split(kind.kind, "%s", { trimempty = true })
+		-- 		kind.kind = " " .. (strings[1] or "") .. " "
+		-- 		kind.menu = "    (" .. (strings[2] or "") .. ")"
+		--
+		-- 		return kind
+		-- 	end,
+		-- },
 		formatting = {
-			fields = { "kind", "abbr", "menu" },
-			format = function(entry, vim_item)
-				local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-				local strings = vim.split(kind.kind, "%s", { trimempty = true })
-				kind.kind = " " .. (strings[1] or "") .. " "
-				kind.menu = "    (" .. (strings[2] or "") .. ")"
-				return kind
-			end,
+			format = lspkind.cmp_format({ mode = "symbol_text" }),
 		},
 	})
 
@@ -110,7 +119,7 @@ M.config = function()
 	})
 
 	-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-	vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6E5494" })
+	-- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6E5494" })
 end
 
 return M
