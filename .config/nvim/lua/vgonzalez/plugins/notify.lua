@@ -2,6 +2,7 @@ local M = {
 	"rcarriga/nvim-notify",
 }
 
+
 M.onfig = function()
 	require("notify").setup({
 		-- background_colour = "#000000",
