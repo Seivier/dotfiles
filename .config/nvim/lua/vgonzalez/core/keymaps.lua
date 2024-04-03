@@ -70,7 +70,7 @@ keymap("n", "<leader>sn", function()
 end, { desc = "Search neofiles" })
 
 -- Neotree
-keymap("n", "<leader>f", "<cmd>Neotree toggle<cr>", { desc = "Open explorer" })
+keymap("n", "<leader>f", "<cmd>Neotree toggle position=right<cr>", { desc = "Open explorer" })
 
 -- LSP
 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
