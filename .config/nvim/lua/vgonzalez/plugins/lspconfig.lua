@@ -48,7 +48,6 @@ local M = {
 				"SmiteshP/nvim-navic",
 				"MunifTanjim/nui.nvim",
 			},
-			opts = { lsp = { auto_attach = true } },
 		},
 	},
 	-- { "folke/neodev.nvim",              opts = {} },

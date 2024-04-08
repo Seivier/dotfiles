@@ -37,7 +37,7 @@ alias muxn="tmuxinator new"
 alias muxo="tmuxinator open"
 alias restart="exec zsh"
 alias cls="clear"
-alias open="xdg-open"
+# alias open="xdg-open"
 
 # zeoxide
 eval "$(zoxide init --cmd cd zsh)"

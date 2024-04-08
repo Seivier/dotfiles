@@ -95,7 +95,6 @@ require("lazy").setup({
 		lazy = false,
 		init = function()
 			vim.g.blamer_enabled = true
-			vim.g.blamer_delay = 500
 			vim.g.blamer_show_in_insert_modes = false
 		end,
 	},
@@ -159,6 +158,25 @@ require("lazy").setup({
 		config = function()
 			require("auto-session").setup()
 		end,
+	},
+
+	-- Zen mode
+	{
+		"folke/zen-mode.nvim",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			wezterm = {
+				enabled = true,
+				font = "+4"
+			}
+		}
+	},
+
+	-- vimux
+	{
+		"preservim/vimux",
 	},
 
 	-- THEMES --

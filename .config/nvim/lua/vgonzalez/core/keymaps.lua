@@ -4,7 +4,6 @@ keymap("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 keymap("i", "<C-a>", "<Esc>")
 
-
 -- null buffer
 keymap("n", "<leader>c", '"_c')
 keymap("n", "<leader>d", '"_d')
@@ -18,7 +17,7 @@ keymap("n", "<leader>we", "<C-w>=", { desc = "Resize all windows" })
 keymap("n", "<leader>wz", "<cmd>resize | vertical resize<cr>", { desc = "Zoom this window" })
 --
 -- buffers
-keymap("n", "<tab>", "<cmd>b#<cr>", {desc = "Alternate buffer"})
+keymap("n", "<tab>", "<cmd>b#<cr>", { desc = "Alternate buffer" })
 keymap("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next buffer" }) -- bnext
 keymap("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous buffer" }) -- bprevious
 keymap("n", "<leader>bx", "<cmd>!bd<cr>", { desc = "Close this buffer" })
@@ -37,7 +36,9 @@ keymap("n", "<leader>tx", "<cmd>tabclose<cr>", { desc = "Close tab" })
 keymap("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Search help" })
 keymap("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Search keymaps" })
 keymap("n", "<leader>sf", "<cmd>Telescope find_files<cr>", { desc = "Search files" })
-keymap("n", "<leader>si", function() require("telescope.builtin").find_files({ hidden = true }) end, { desc = "Search hidden files" })
+keymap("n", "<leader>si", function()
+	require("telescope.builtin").find_files({ hidden = true })
+end, { desc = "Search hidden files" })
 keymap("n", "<leader>ss", "<cmd>Telescope builtin<cr>", { desc = "Search select Telescope" })
 keymap("n", "<leader>sw", "<cmd>Telescope grep_string<cr>", { desc = "Search current word" })
 keymap("n", "<leader>sg", "<cmd>Telescope live_grep<cr>", { desc = "Search by grep" })
@@ -72,8 +73,7 @@ keymap("n", "<leader>sn", function()
 end, { desc = "Search neofiles" })
 
 -- Neotree
-keymap("n", "<leader>f", "<cmd>Neotree toggle<cr>", { desc = "Open explorer" })
-
+keymap("n", "<leader>f", "<cmd>Neotree toggle position=right<cr>", { desc = "Open explorer" })
 
 -- LSP
 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
@@ -149,11 +149,11 @@ keymap("n", "<leader>xm", function()
 		if not target then
 			return
 		end
-		vim.cmd("AsyncRun -mode=term make " .. target)
+		vim.cmd("VimuxRunCommand 'make " .. target .. "' ")
 	end)
 end, { desc = "Execute make rule" })
 
-keymap("n", "<leader>xd", function()
+keymap("n", "<leader>xx", function()
 	vim.ui.input({ prompt = "Executable" }, function(target)
 		if not target then
 			return
@@ -164,13 +164,17 @@ keymap("n", "<leader>xd", function()
 		else
 			target = vim.fn.expand("%:p:h") .. "/" .. target
 		end
-		vim.cmd("AsyncRun -mode=term '" .. target .. "'")
+		vim.cmd("VimuxRunCommand '" .. target .. "'")
 	end)
 end, { desc = "Execute this file" })
 
+keymap("n", "<leader>xt", function()
+	vim.cmd("VimuxRunCommand 'make test'")
+end, { desc = "Execute test" })
+
 -- Open
-keymap("n", "<leader>of", "<cmd>! xdg-open '%:h' <cr>", { desc = "Open current file in Finder" })
-keymap("n", "<leader>op", "<cmd>! xdg-open '%:p:r.pdf' <cr>", { desc = "Open current file as PDF" })
+keymap("n", "<leader>of", "<cmd>! open '%:h' <cr>", { desc = "Open current file in Finder" })
+keymap("n", "<leader>op", "<cmd>! open '%:p:r.pdf' <cr>", { desc = "Open current file as PDF" })
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
@@ -178,28 +182,53 @@ keymap("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Git status" })
 keymap("n", "<leader>gh", "<cmd>! gh browse <cr>", { desc = "Open GitHub" })
 
 -- Harpoon
-keymap("n", "<leader>hh",function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, { desc = "Harpoon menu" })
+keymap("n", "<leader>hh", function()
+	require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
+end, { desc = "Harpoon menu" })
 keymap("n", "<leader>sm", "<cmd>Telescope harpoon marks<cr>", { desc = "Search harpoon marks" })
-keymap("n", "<leader>ha",function() require("harpoon"):list():append() end, { desc = "Add mark to harpoon" })
-keymap("n", "<leader>hn",function() require("harpoon"):list():next() end, { desc = "Next mark" })
-keymap("n", "<leader>hp",function() require("harpoon"):list():prev() end, { desc = "Previous mark" })
-keymap("n", "<leader>1", function() require("harpoon"):list():select(1) end)
-keymap("n", "<leader>2", function() require("harpoon"):list():select(2) end)
-keymap("n", "<leader>3", function() require("harpoon"):list():select(3) end)
-keymap("n", "<leader>4", function() require("harpoon"):list():select(4) end)
-keymap("n", "<leader>5", function() require("harpoon"):list():select(5) end)
-keymap("n", "<leader>6", function() require("harpoon"):list():select(6) end)
-keymap("n", "<leader>7", function() require("harpoon"):list():select(7) end)
-keymap("n", "<leader>8", function() require("harpoon"):list():select(8) end)
-keymap("n", "<leader>9", function() require("harpoon"):list():select(9) end)
+keymap("n", "<leader>ha", function()
+	require("harpoon"):list():append()
+end, { desc = "Add mark to harpoon" })
+keymap("n", "<leader>hn", function()
+	require("harpoon"):list():next()
+end, { desc = "Next mark" })
+keymap("n", "<leader>hp", function()
+	require("harpoon"):list():prev()
+end, { desc = "Previous mark" })
+keymap("n", "<leader>1", function()
+	require("harpoon"):list():select(1)
+end)
+keymap("n", "<leader>2", function()
+	require("harpoon"):list():select(2)
+end)
+keymap("n", "<leader>3", function()
+	require("harpoon"):list():select(3)
+end)
+keymap("n", "<leader>4", function()
+	require("harpoon"):list():select(4)
+end)
+keymap("n", "<leader>5", function()
+	require("harpoon"):list():select(5)
+end)
+keymap("n", "<leader>6", function()
+	require("harpoon"):list():select(6)
+end)
+keymap("n", "<leader>7", function()
+	require("harpoon"):list():select(7)
+end)
+keymap("n", "<leader>8", function()
+	require("harpoon"):list():select(8)
+end)
+keymap("n", "<leader>9", function()
+	require("harpoon"):list():select(9)
+end)
 
 -- Icon picker
 keymap("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>", { desc = "Choose an emoji" })
 keymap("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>", { desc = "Choose an nerd icon" })
 
 -- Reload config
-keymap("n", "<leader>r", "<cmd>source $MYVIMRC<cr>", {desc = "Reload config"})
+keymap("n", "<leader>r", "<cmd>source $MYVIMRC<cr>", { desc = "Reload config" })
 
 -- Copilot
-keymap("i", "<C-c>", 'copilot#Accept("\\<CR>")', {expr = true, replace_keycodes = false})
-
+keymap("i", "<C-c>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })

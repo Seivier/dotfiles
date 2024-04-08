@@ -2,7 +2,13 @@ local M = {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		"SmiteshP/nvim-navic",
+		{
+			"SmiteshP/nvim-navic",
+			opts = {
+				click = true,
+				lazy_update_context = true,
+			},
+		},
 	},
 }
 
@@ -11,11 +17,11 @@ M.config = function()
 
 	local function get_vim_mode()
 		local icon = {
-			n = "",
+			n = "",
 			i = "",
-			c = "",
-			V = "",
-			v = "",
+			c = "",
+			V = "",
+			v = "",
 			R = "",
 			r = "",
 			t = "",
@@ -39,13 +45,16 @@ M.config = function()
 		end
 	end
 
-	local my_filename = require("lualine.components.filename"):extend()
-	my_filename.apply_icon = require("lualine.components.filetype").apply_icon
-	my_filename.icon_hl_cache = {}
-
-	require("lualine").setup({
-		lualine_c = { { my_filename, colored = true } },
-	})
+	local function diff_source()
+		local gitsigns = vim.b.gitsigns_status_dict
+		if gitsigns then
+			return {
+				added = gitsigns.added,
+				modified = gitsigns.changed,
+				removed = gitsigns.removed,
+			}
+		end
+	end
 
 	require("lualine").setup({
 		options = {
@@ -54,14 +63,13 @@ M.config = function()
 			-- round section separtors
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = {
-				statusline = { "Dashboard", "TelescopePrompt" },
+				statusline = { "Dashboard", "TelescopePrompt", "neo-tree" },
 				winbar = { "Dashboard", "TelescopePrompt", "neo-tree", "toggleterm" },
 			},
-			globalstatus = true,
-			always_divide_middle = false,
+			-- globalstatus = true,
 		},
 		sections = {
-			lualine_a = { "mode" },
+			lualine_a = { get_vim_mode, "mode" },
 			lualine_b = {
 				{
 					"diagnostics",
@@ -71,28 +79,39 @@ M.config = function()
 				},
 			},
 			lualine_c = {
+				"%=",
 				{ "filetype", icon_only = true },
-				{
-					"filename",
-					file_status = false,
-					-- path = 1,
-					-- shorting_target = 200
-				},
-				{ "diff", colored = true },
+				{ "filename", file_status = false },
+				-- {
+				-- "filename",
+				-- file_status = false,
+				-- path = 1,
+				-- shorting_target = 200
+				-- },
 			},
 			lualine_x = {
-				"harpoon2"
-
+				-- "harpoon2",
 			},
 			lualine_y = {
-				{ "b:gitsigns_head", icon = "" },
+				{
+					"diff",
+					colored = true,
+					source = diff_source,
+					symbols = {
+						added = " ",
+						modified = " ",
+						removed = " ",
+					},
+				},
 			},
-			lualine_z = { "location" },
+			lualine_z = { { "b:gitsigns_head", icon = "" } },
 		},
 		inactive_sections = {
-			lualine_a = {},
-			lualine_b = {},
-			lualine_c = {},
+			lualine_c = {
+				"%=",
+				{ "filetype", icon_only = true },
+				{ "filename", file_status = false },
+			},
 			lualine_x = {},
 			lualine_y = {},
 			lualine_z = {},
@@ -101,15 +120,17 @@ M.config = function()
 			lualine_a = {},
 			lualine_b = {},
 			lualine_c = { { "navic", color_correction = nil } },
-			lualine_x = { { get_last_buffer_filename, icon = "󰁯" } },
+			lualine_x = {
+				{ get_last_buffer_filename, icon = "󰁯" },
+			},
 			lualine_y = {},
 			lualine_z = {},
 		},
 		inactive_winbar = {
 			lualine_a = {},
 			lualine_b = {},
-			lualine_c = { { "filename" } },
-			lualine_x = {},
+			lualine_c = {},
+			lualine_x = {"encoding", "fileformat"},
 			lualine_y = {},
 			lualine_z = {},
 		},

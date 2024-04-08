@@ -117,7 +117,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	desc = "Activate wrap for Latex, Typst and Markdown",
 	group = vim.api.nvim_create_augroup("enter-wrap-text", {clear = true}),
 	callback = function (opts)
-		if vim.bo[opts.buf].filetype == 'typst' then
+		local ft = vim.bo[opts.buf].filetype
+		if ft == 'typst' or ft == "markdown" or ft == "text" then
 			vim.opt.wrap = true
 		end
 	end
@@ -127,18 +128,10 @@ vim.api.nvim_create_autocmd("BufLeave", {
 	desc = "Activate wrap for Latex, Typst and Markdown",
 	group = vim.api.nvim_create_augroup("leave-wrap-text", {clear = true}),
 	callback = function (opts)
-		if vim.bo[opts.buf].filetype == 'typst' then
+		local ft = vim.bo[opts.buf].filetype
+		if ft == 'typst' or ft == "markdown" or ft == "text" then
 			vim.opt.wrap = false
 		end
 	end
 })
 
-vim.api.nvim_create_autocmd("InsertLeave", {
-	desc = "Activate wrap for Latex, Typst and Markdown",
-	group = vim.api.nvim_create_augroup("leave-wrap-text", {clear = true}),
-	callback = function (opts)
-		if vim.bo[opts.buf].filetype == 'typst' then
-			vim.opt.wrap = false
-		end
-	end
-})

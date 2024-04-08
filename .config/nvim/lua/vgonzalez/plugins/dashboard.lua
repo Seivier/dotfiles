@@ -40,7 +40,7 @@ M.config = function()
           icon = '📁 ',
           desc = 'File tree',
           group = 'DiagnosticHint',
-          action = 'Neotree reveal position=float',
+          action = 'Neotree toggle position=float',
           key = 'e',
         },
         {
