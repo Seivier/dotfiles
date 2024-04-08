@@ -95,7 +95,6 @@ require("lazy").setup({
 		lazy = false,
 		init = function()
 			vim.g.blamer_enabled = true
-			vim.g.blamer_delay = 500
 			vim.g.blamer_show_in_insert_modes = false
 		end,
 	},
@@ -173,6 +172,11 @@ require("lazy").setup({
 				font = "+4"
 			}
 		}
+	},
+
+	-- vimux
+	{
+		"preservim/vimux",
 	},
 
 	-- THEMES --
