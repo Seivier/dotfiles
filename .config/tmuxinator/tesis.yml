@@ -45,5 +45,6 @@ root: ~/Documents/Dev/Universidad/Trabajo de Tesis I/
 # attach: false
 
 windows:
-  - repo: cd 3D-GPolylla && nvim .
+  - repo: cd 3D-GPolylla && nvim
   - build: cd 3D-GPolylla && make autoload
+  - extra: .
