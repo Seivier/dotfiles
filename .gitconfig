@@ -7,6 +7,7 @@
 [user]
 	email = vicentegonzalez@ug.uchile.cl
 	name = Vicente González
+	mail = vigb902@gmail.com
 [core]
 	autocrlf = input
 [pull]
@@ -17,3 +18,5 @@
 	directory = /run/media/vgonzalez/Dev/Universidad/Trabajo de Tesis I/3D-GPolylla
 	directory = /run/media/vgonzalez/Dev/*
 	directory = *
+[maintenance]
+	repo = /Volumes/Dev/Universidad/Computación en GPU/CC7515-24O/auxiliares/3/pauta

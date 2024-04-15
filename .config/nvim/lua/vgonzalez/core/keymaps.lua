@@ -73,7 +73,7 @@ keymap("n", "<leader>sn", function()
 end, { desc = "Search neofiles" })
 
 -- Neotree
-keymap("n", "<leader>f", "<cmd>Neotree toggle position=right<cr>", { desc = "Open explorer" })
+-- keymap("n", "<leader>f", "<cmd>Neotree toggle position=right<cr>", { desc = "Open explorer" })
 
 -- LSP
 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
@@ -231,4 +231,7 @@ keymap("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>", { desc = "Choose 
 keymap("n", "<leader>r", "<cmd>source $MYVIMRC<cr>", { desc = "Reload config" })
 
 -- Copilot
-keymap("i", "<C-c>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+-- keymap("i", "<C-c>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+
+-- Oil
+keymap("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory"  })

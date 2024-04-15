@@ -102,6 +102,7 @@ opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,term
 -- Fancy text for md and typst
 opt.conceallevel = 2
 
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -134,4 +135,14 @@ vim.api.nvim_create_autocmd("BufLeave", {
 		end
 	end
 })
+
+vim.api.nvim_create_autocmd("BufAdd", {
+	desc = "Treat OpenCL as C lang",
+	group = vim.api.nvim_create_augroup("opencl-c", {clear = true}),
+	pattern = "*.cl",
+	callback = function (opts)
+		vim.bo[opts.buf].filetype = "c"
+	end
+})
+
 

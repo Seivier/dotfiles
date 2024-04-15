@@ -12,6 +12,7 @@ M.config = {
 		cpp = { "clang-format" },
 		c = { "clang-format" },
 		typst = { "typstfmt" },
+		markdown = { "prettier" },
 	},
 	formatters = {
 		["clang-format"] = {

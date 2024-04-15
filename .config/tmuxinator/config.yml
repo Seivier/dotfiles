@@ -1,7 +1,7 @@
 # /Users/vgonzalez/.config/tmuxinator/config.yml
 
 name: config
-root: ~/
+root: ~/.dotfiles/
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,23 +45,8 @@ root: ~/
 # attach: false
 
 windows:
-  - nvim:
-      root: ~/.config/nvim/
-      layout: main-horizontal
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - nvim
-  - tmux: 
-      panes:
-        - nvim .tmux.conf
-  - zsh:
-      panes:
-        - nvim .zshrc
-
-  - term:
-      root: ~/.config/wezterm/
-      panes:
-        - nvim wezterm.lua
+  - nvim: cd .config/nvim && nvim
+  - tmux: nvim .tmux.conf
+  - zsh: nvim .zshrc
+  - term: cd .config/kitty && nvim
         

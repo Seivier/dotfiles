@@ -16,7 +16,7 @@ M.config = function()
 		group = vim.api.nvim_create_augroup("linter", { clear = true }),
 		callback = function()
 			lint.try_lint()
-		end
+		end,
 	})
 end
 

@@ -33,6 +33,8 @@ local servers = {
 	cssls = {}, -- css
 	texlab = {}, -- latex
 	cmake = {}, -- cmake
+	marksman = {}, -- markdown
+	opencl_ls = {},
 }
 
 local M = {

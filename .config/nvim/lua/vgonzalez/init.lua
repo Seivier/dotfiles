@@ -146,12 +146,6 @@ require("lazy").setup({
 		},
 	},
 
-	-- autosave
-	{
-		"Pocco81/auto-save.nvim",
-		lazy = false,
-	},
-
 	-- autosessions
 	{
 		"rmagatti/auto-session",
@@ -178,6 +172,7 @@ require("lazy").setup({
 	{
 		"preservim/vimux",
 	},
+
 
 	-- THEMES --
 	{
