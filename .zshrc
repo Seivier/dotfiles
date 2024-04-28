@@ -96,7 +96,7 @@ plugins=(
 )
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -130,6 +130,7 @@ export CXX="/usr/bin/clang++"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias wait="caffeinate -ids"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

@@ -67,21 +67,21 @@ M.config = function()
 				statusline = { "Dashboard", "TelescopePrompt", "neo-tree" },
 				winbar = { "Dashboard", "TelescopePrompt", "neo-tree", "toggleterm" },
 			},
-			-- globalstatus = true,
 		},
 		sections = {
 			lualine_a = {
 				{ get_vim_mode, padding = { left = 1, right = 0 } },
 				"mode",
 			},
-			lualine_b = {},
-			lualine_c = {
+			lualine_b = {
 				{ "filetype", icon_only = true, padding = { left = 1, right = 0 } },
-				{ "filename", file_status = false, separator = ">" },
+				{ "filename" },
+			},
+			lualine_c = {
 				{
 					"navic",
 					cond = function()
-						return vim.fn.winwidth(0) > 150
+						return vim.fn.winwidth(0) >= 120
 					end,
 				},
 			},
@@ -91,6 +91,8 @@ M.config = function()
 					sources = { "nvim_lsp", "nvim_diagnostic" },
 					sections = { "error", "warn", "info", "hint" },
 				},
+			},
+			lualine_y = {
 				{
 					"diff",
 					colored = true,
@@ -102,13 +104,12 @@ M.config = function()
 					},
 				},
 			},
-			lualine_y = {},
 			lualine_z = { { "b:gitsigns_head", icon = "" } },
 		},
 		inactive_sections = {
 			lualine_c = {
 				{ "filetype", icon_only = true, padding = { left = 1, right = 0 } },
-				{ "filename", padding = { left = 0, right = 1 } },
+				{ "filename" },
 			},
 			lualine_x = {
 				{
@@ -123,72 +124,6 @@ M.config = function()
 				},
 			},
 		},
-		-- sections = {
-		-- 	lualine_a = { "mode" },
-		-- 	lualine_b = {
-		-- 		{
-		-- 			"diagnostics",
-		-- 			sources = { "nvim_lsp", "nvim_diagnostic" },
-		-- 			sections = { "error", "warn", "info", "hint" },
-		-- 			always_visible = true, -- Show diagnostics even if there are none.
-		-- 		},
-		-- 	},
-		-- 	lualine_c = {
-		-- 		"%=",
-		-- 		{ "filetype", icon_only = true },
-		-- 		{ "filename", file_status = false },
-		-- 		-- {
-		-- 		-- "filename",
-		-- 		-- file_status = false,
-		-- 		-- path = 1,
-		-- 		-- shorting_target = 200
-		-- 		-- },
-		-- 	},
-		-- 	lualine_x = {
-		-- 		-- "harpoon2",
-		-- 	},
-		-- 	lualine_y = {
-		-- 		{
-		-- 			"diff",
-		-- 			colored = true,
-		-- 			source = diff_source,
-		-- 			symbols = {
-		-- 				added = " ",
-		-- 				modified = " ",
-		-- 				removed = " ",
-		-- 			},
-		-- 		},
-		-- 	},
-		-- 	lualine_z = { { "b:gitsigns_head", icon = "" } },
-		-- },
-		-- inactive_sections = {
-		-- 	lualine_c = {
-		-- 		"%=",
-		-- 		{ "filetype", icon_only = true },
-		-- 		{ "filename", file_status = false },
-		-- 	},
-		-- 	lualine_x = {},
-		-- 	lualine_y = {},
-		-- 	lualine_z = {},
-		-- },
-		-- winbar = {
-		-- 	lualine_a = {},
-		-- 	lualine_b = {},
-		-- 	lualine_c = { { "navic", color_correction = nil } },
-		-- 	lualine_x = {
-		-- 		{ get_last_buffer_filename, icon = "󰁯" },
-		-- 	},
-		-- 	lualine_y = {},
-		-- 	lualine_z = {},
-		-- },
-		-- inactive_winbar = {
-		-- 	lualine_a = {},
-		-- 	lualine_b = {},
-		-- 	lualine_c = {},
-		-- 	lualine_x = {"encoding", "fileformat"},
-		-- 	lualine_y = {},
-		-- 	lualine_z = {},
-		-- },
 		extensions = {
 			"neo-tree",
 			"lazy",

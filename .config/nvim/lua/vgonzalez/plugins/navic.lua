@@ -32,6 +32,7 @@ M.opts = {
 		Operator = " ",
 		TypeParameter = " ",
 	},
+	highlight = false,
 }
 
 return M

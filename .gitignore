@@ -1,3 +1,7 @@
 .cfg
 
 */github-copilot/
+
+*.DS_Store
+
+

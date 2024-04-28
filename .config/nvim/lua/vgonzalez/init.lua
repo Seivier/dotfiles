@@ -95,6 +95,7 @@ require("lazy").setup({
 		lazy = false,
 		init = function()
 			vim.g.blamer_enabled = true
+			vim.g.blame_delay = 100
 			vim.g.blamer_show_in_insert_modes = false
 		end,
 	},
@@ -130,7 +131,7 @@ require("lazy").setup({
 		ft = "typst",
 		lazy = false,
 		config = function()
-			vim.g.typst_conceal = 3
+			vim.g.typst_conceal = 2
 			vim.g.typst_embedded_languages = { "cpp", "c", "make", "python", "scala" }
 		end,
 	},
@@ -217,6 +218,10 @@ require("lazy").setup({
 		"navarasu/onedark.nvim",
 		priority = 1000,
 	},
+	{
+		"shaunsingh/nord.nvim",
+		priority = 1000,
+	},
 	{ import = "vgonzalez.plugins" },
 }, {
 	change_detection = {
@@ -228,4 +233,4 @@ require("lazy").setup({
 	},
 })
 
-vim.cmd([[colorscheme tokyonight-night]])
+vim.cmd([[colorscheme rose-pine]])
