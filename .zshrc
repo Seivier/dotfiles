@@ -91,17 +91,17 @@ plugins=(
     tmuxinator
     vi-mode
     zoxide
-    zsh-autosuggestions
-    zsh-syntax-highlighting
+    # zsh-autosuggestions
+    # zsh-syntax-highlighting
 )
 
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+# fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+# FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export DEV="~/dev"
+export DEV="~/Documents/Dev"
 export UNI="$DEV/Universidad"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -118,9 +118,6 @@ export EDITOR="nvim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-export EDITOR="nvim"
-export CC="/usr/bin/clang"
-export CXX="/usr/bin/clang++"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -131,21 +128,5 @@ export CXX="/usr/bin/clang++"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wait="caffeinate -ids"
+alias e=${EDITOR}
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/vgonzalez/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/vgonzalez/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/vgonzalez/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/vgonzalez/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# opam configuration
-[[ ! -r /home/vgonzalez/.opam/opam-init/init.zsh ]] || source /home/vgonzalez/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

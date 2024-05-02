@@ -21,7 +21,7 @@ local servers = {
 			offsetEncoding = "utf-16",
 		},
 	}, -- c/cpp
-	ocamllsp = {}, -- ocaml
+	-- ocamllsp = {}, -- ocaml
 	typst_lsp = {
 		settings = {
 			exportPdf = "never",

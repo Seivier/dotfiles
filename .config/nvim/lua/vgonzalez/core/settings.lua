@@ -86,8 +86,8 @@ opt.showmatch = true
 -- opt.foldenable = false
 
 -- Netrw
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
+-- g.loaded_netrw = 1
+-- g.loaded_netrwPlugin = 1
 
 -- Completion
 -- opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
