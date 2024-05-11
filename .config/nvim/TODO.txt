@@ -1,3 +1,0 @@
-- Ver el temita del asyncrun y asynctask (o neomake)
-- Cambiar el dashboard por alpha
-- Añadir snippets

@@ -1,0 +1,32 @@
+import = ["~/.config/alacritty/rose-pine.toml"]
+
+[env]
+# TERM = "alacritty"
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "JetbrainsMono Nerd Font"
+
+[font.offset]
+y = 6
+
+[font.glyph_offset]
+y = 3
+
+[window]
+decorations = "buttonless"
+dynamic_title = true
+option_as_alt = "OnlyLeft"
+opacity = 0.8
+blur = true
+
+[window.padding]
+x = 10
+y = 10
+
+[mouse]
+hide_when_typing = true
+
+

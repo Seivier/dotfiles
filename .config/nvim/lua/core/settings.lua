@@ -44,7 +44,7 @@ opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 -- opt.colorcolumn = "100"
-opt.scrolloff = 10
+opt.scrolloff = 0
 
 -- update
 opt.updatetime = 250
@@ -86,8 +86,8 @@ opt.showmatch = true
 -- opt.foldenable = false
 
 -- Netrw
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
+-- g.loaded_netrw = 1
+-- g.loaded_netrwPlugin = 1
 
 -- Completion
 -- opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }

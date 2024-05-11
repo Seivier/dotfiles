@@ -144,33 +144,33 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Exec
-keymap("n", "<leader>xm", function()
-	vim.ui.input({ prompt = "Target" }, function(target)
-		if not target then
-			return
-		end
-		vim.cmd("VimuxRunCommand 'make " .. target .. "' ")
-	end)
-end, { desc = "Execute make rule" })
-
-keymap("n", "<leader>xx", function()
-	vim.ui.input({ prompt = "Executable" }, function(target)
-		if not target then
-			return
-		end
-		if target == "" then
-			-- relative path and no file extension
-			target = vim.fn.expand("%:p:r") .. ".out"
-		else
-			target = vim.fn.expand("%:p:h") .. "/" .. target
-		end
-		vim.cmd("VimuxRunCommand '" .. target .. "'")
-	end)
-end, { desc = "Execute this file" })
-
-keymap("n", "<leader>xt", function()
-	vim.cmd("VimuxRunCommand 'make test'")
-end, { desc = "Execute test" })
+-- keymap("n", "<leader>xm", function()
+-- 	vim.ui.input({ prompt = "Target" }, function(target)
+-- 		if not target then
+-- 			return
+-- 		end
+-- 		vim.cmd("VimuxRunCommand 'make " .. target .. "' ")
+-- 	end)
+-- end, { desc = "Execute make rule" })
+--
+-- keymap("n", "<leader>xx", function()
+-- 	vim.ui.input({ prompt = "Executable" }, function(target)
+-- 		if not target then
+-- 			return
+-- 		end
+-- 		if target == "" then
+-- 			-- relative path and no file extension
+-- 			target = vim.fn.expand("%:p:r") .. ".out"
+-- 		else
+-- 			target = vim.fn.expand("%:p:h") .. "/" .. target
+-- 		end
+-- 		vim.cmd("VimuxRunCommand '" .. target .. "'")
+-- 	end)
+-- end, { desc = "Execute this file" })
+--
+-- keymap("n", "<leader>xt", function()
+-- 	vim.cmd("VimuxRunCommand 'make test'")
+-- end, { desc = "Execute test" })
 
 -- Open
 keymap("n", "<leader>of", "<cmd>! open '%:h' <cr>", { desc = "Open current file in Finder" })
@@ -228,7 +228,7 @@ keymap("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>", { desc = "Choose an e
 keymap("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>", { desc = "Choose an nerd icon" })
 
 -- Reload config
-keymap("n", "<leader>r", "<cmd>source $MYVIMRC<cr>", { desc = "Reload config" })
+keymap("n", "<leader>cr", "<cmd>source $MYVIMRC<cr>", { desc = "Reload config" })
 
 -- Copilot
 -- keymap("i", "<C-c>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })

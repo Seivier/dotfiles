@@ -58,7 +58,7 @@ M.config = function()
 
 	require("lualine").setup({
 		options = {
-			theme = "auto",
+			theme = "rose-pine",
 			component_separators = "",
 			-- round section separtors
 			-- section_separators = { left = "", right = "" },

@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("core")
 require("lazy").setup({
-	-- THEMES --
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
