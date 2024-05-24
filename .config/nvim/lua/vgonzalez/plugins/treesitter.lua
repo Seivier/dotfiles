@@ -3,7 +3,6 @@ local M = {
 	dependencies = {
 		-- "nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		"windwp/nvim-ts-autotag",
 	},
 	build = ":TSUpdate",
 }
@@ -16,26 +15,14 @@ M.opts = {
 }
 
 M.config = function(_, opts)
-	require("nvim-treesitter.configs").setup(opts)
+	local treesitter_imported_ok, treesitter = pcall(require, "nvim-treesitter.configs")
+	if not treesitter_imported_ok then
+		return
+	end
+	treesitter.setup(opts)
 
-	require("nvim-ts-autotag").setup({
-		autotag = {
-			enable = true,
-		},
-		filetypes = {
-			"html",
-			"javascript",
-			"javascriptreact",
-			"typescriptreact",
-			"svelte",
-			"vue",
-			"xml",
-			"xsl",
-			"jsx",
-			"tsx",
-			"htmldjango",
-		},
-	})
+	local register = vim.treesitter.language.register
+	-- register("html", "htmldjango") -- enable html parser in htmldjango file
 end
 
 return M

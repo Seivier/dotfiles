@@ -28,7 +28,9 @@ local servers = {
 		},
 	}, -- typst
 	pyright = {}, -- python
-	html = {}, -- html
+	html = {
+		filetypes = { "html", "htmldjango" },
+	}, -- html
 	tsserver = {}, -- typescript & javascript
 	cssls = {}, -- css
 	texlab = {}, -- latex
@@ -110,6 +112,9 @@ M.config = function()
 					if client.server_capabilities.documentSymbolProvider then
 						require("nvim-navic").attach(client, bufnr)
 						require("nvim-navbuddy").attach(client, bufnr)
+					end
+					if client.server_capabilities.inlayHintProvider then
+						vim.lsp.inlay_hint.enable(true)
 					end
 				end
 				require("lspconfig")[server_name].setup(server)

@@ -1,6 +1,8 @@
 local keymap = vim.keymap.set
 
-keymap("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 keymap("i", "<C-a>", "<Esc>")
 
@@ -15,7 +17,7 @@ keymap("n", "<leader>wc", "<cmd>close<cr>", { desc = "Close this window" })
 keymap("n", "<leader>wq", "<cmd>only<cr>", { desc = "Close other windows" })
 keymap("n", "<leader>we", "<C-w>=", { desc = "Resize all windows" })
 keymap("n", "<leader>wz", "<cmd>resize | vertical resize<cr>", { desc = "Zoom this window" })
---
+
 -- buffers
 keymap("n", "<tab>", "<cmd>b#<cr>", { desc = "Alternate buffer" })
 keymap("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next buffer" }) -- bnext
@@ -25,6 +27,10 @@ keymap("n", "<leader>bg", function()
 	local num = vim.fn.input("Buffer number: ")
 	vim.cmd("b" .. num)
 end, { desc = "Go to buffer" })
+
+-- terminal
+keymap("t", "<C-a>", "<C-\\><C-n>")
+keymap("n", "<leader>tt", "<cmd>split +terminal<cr>", { desc = "Open Terminal"})
 
 -- tabs
 keymap("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next tab" }) -- tab
@@ -127,6 +133,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("K", vim.lsp.buf.hover, "Hover Documentation")
 		map("gD", vim.lsp.buf.declaration, "Goto declaration")
 		map("<leader>ln", "<cmd>Navbuddy<cr>", "Navigate to symbol")
+		map("<leader>lh", function ()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, "Enable inlay hints")
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if client and client.server_capabilities.documentHighlightProvider then
@@ -182,46 +191,6 @@ keymap("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Git status" })
 keymap("n", "<leader>gh", "<cmd>! gh browse <cr>", { desc = "Open GitHub" })
 
 -- Harpoon
-keymap("n", "<leader>hh", function()
-	require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
-end, { desc = "Harpoon menu" })
-keymap("n", "<leader>sm", "<cmd>Telescope harpoon marks<cr>", { desc = "Search harpoon marks" })
-keymap("n", "<leader>ha", function()
-	require("harpoon"):list():append()
-end, { desc = "Add mark to harpoon" })
-keymap("n", "<leader>hn", function()
-	require("harpoon"):list():next()
-end, { desc = "Next mark" })
-keymap("n", "<leader>hp", function()
-	require("harpoon"):list():prev()
-end, { desc = "Previous mark" })
-keymap("n", "<leader>1", function()
-	require("harpoon"):list():select(1)
-end)
-keymap("n", "<leader>2", function()
-	require("harpoon"):list():select(2)
-end)
-keymap("n", "<leader>3", function()
-	require("harpoon"):list():select(3)
-end)
-keymap("n", "<leader>4", function()
-	require("harpoon"):list():select(4)
-end)
-keymap("n", "<leader>5", function()
-	require("harpoon"):list():select(5)
-end)
-keymap("n", "<leader>6", function()
-	require("harpoon"):list():select(6)
-end)
-keymap("n", "<leader>7", function()
-	require("harpoon"):list():select(7)
-end)
-keymap("n", "<leader>8", function()
-	require("harpoon"):list():select(8)
-end)
-keymap("n", "<leader>9", function()
-	require("harpoon"):list():select(9)
-end)
 
 -- Icon picker
 keymap("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>", { desc = "Choose an emoji" })

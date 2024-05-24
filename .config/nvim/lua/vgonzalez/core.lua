@@ -101,6 +101,7 @@ opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,term
 
 -- Fancy text for md and typst
 opt.conceallevel = 2
+-- opt.concealcursor = "nc"
 
 
 -- Highlight when yanking (copying) text
@@ -119,7 +120,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	group = vim.api.nvim_create_augroup("enter-wrap-text", {clear = true}),
 	callback = function (opts)
 		local ft = vim.bo[opts.buf].filetype
-		if ft == 'typst' or ft == "markdown" or ft == "text" then
+		if ft == 'typst' or ft == "markdown" or ft == "text" or ft == "norg" then
 			vim.opt.wrap = true
 		end
 	end
@@ -130,7 +131,7 @@ vim.api.nvim_create_autocmd("BufLeave", {
 	group = vim.api.nvim_create_augroup("leave-wrap-text", {clear = true}),
 	callback = function (opts)
 		local ft = vim.bo[opts.buf].filetype
-		if ft == 'typst' or ft == "markdown" or ft == "text" then
+		if ft == 'typst' or ft == "markdown" or ft == "text" or ft == "norg" then
 			vim.opt.wrap = false
 		end
 	end

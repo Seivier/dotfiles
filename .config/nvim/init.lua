@@ -11,7 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("core")
+require("vgonzalez.core")
+require("vgonzalez.keymaps")
 require("lazy").setup({
 	-- THEMES --
 	{

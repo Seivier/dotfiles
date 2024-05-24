@@ -119,8 +119,10 @@ export EDITOR="nvim"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 export EDITOR="nvim"
-export CC="/usr/bin/clang"
-export CXX="/usr/bin/clang++"
+# export CC="/opt/homebrew/bin/gcc-14"
+# export CXX="/opt/homebrew/bin/g++-14"
+export CC=clang
+export CXX=clang++
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -134,14 +136,14 @@ alias wait="caffeinate -ids"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/vgonzalez/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/vgonzalez/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/vgonzalez/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
     else
-        export PATH="/home/vgonzalez/miniconda3/bin:$PATH"
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
     fi
 fi
 unset __conda_setup

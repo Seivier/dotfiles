@@ -10,7 +10,7 @@ local tmpl = {
     return {
       cmd = { "typst" },
       args = { params.cmd, params.file, "--open"},
-      components = {"default"}
+      components = {"default", "on_result_notify" }
     }
   end
 }

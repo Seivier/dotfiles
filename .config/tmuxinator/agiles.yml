@@ -45,4 +45,5 @@ root: ~/Documents/Dev/Universidad/Taller de Metodologías Ágiles de Desarrollo 
 # attach: false
 
 windows:
-  - repo: cd grupo-de-bigel && nvim
+  - main: nvim .
+  - guillermo: cd grupo-de-guillermo && nvim .
