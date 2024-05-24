@@ -1,7 +1,5 @@
 local keymap = vim.keymap.set
 
-
-
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 keymap("i", "<C-a>", "<Esc>")
@@ -38,54 +36,11 @@ keymap("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Previous tab" }) -- 
 keymap("n", "<leader>to", "<cmd>tabnew<cr>", { desc = "New tab" })
 keymap("n", "<leader>tx", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
--- Telescope
-keymap("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Search help" })
-keymap("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Search keymaps" })
-keymap("n", "<leader>sf", "<cmd>Telescope find_files<cr>", { desc = "Search files" })
-keymap("n", "<leader>si", function()
-	require("telescope.builtin").find_files({ hidden = true })
-end, { desc = "Search hidden files" })
-keymap("n", "<leader>ss", "<cmd>Telescope builtin<cr>", { desc = "Search select Telescope" })
-keymap("n", "<leader>sw", "<cmd>Telescope grep_string<cr>", { desc = "Search current word" })
-keymap("n", "<leader>sg", "<cmd>Telescope live_grep<cr>", { desc = "Search by grep" })
-keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "Search diagnostics" })
-keymap("n", "<leader>sr", "<cmd>Telescope resume<cr>", { desc = "Search resume" })
-keymap("n", "<leader>so", "<cmd>Telescope oldfiles<cr>", { desc = "Search Recent Files" })
--- keymap("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", { desc = "Find existing buffers" })
-keymap("n", "<leader>sb", "<cmd>Telescope buffers<cr>", { desc = "Search buffers" })
-keymap("n", "<leader>se", "<cmd>Telescope file_browser<cr>", { desc = "Open browser" })
-
--- Tmux
-keymap("n", "<leader>us", "<cmd>Telescope tmux sessions<cr>", { desc = "Search tmux sessions" })
-keymap("n", "<leader>uw", "<cmd>Telescope tmux windows<cr>", { desc = "Search tmux windows" })
-
-keymap("n", "<leader><leader>", function()
-	-- You can pass additional configuration to telescope to change theme, layout, etc.
-	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		winblend = 10,
-		previewer = false,
-	}))
-end, { desc = "Fuzzily search in current buffer" })
-
-keymap("n", "<leader>s.", function()
-	require("telescope.builtin").live_grep({
-		grep_open_files = true,
-		prompt_title = "Live Grep in Open Files",
-	})
-end, { desc = "Search in Open Files" })
-
-keymap("n", "<leader>sn", function()
-	require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
-end, { desc = "Search neofiles" })
-
--- Neotree
--- keymap("n", "<leader>f", "<cmd>Neotree toggle position=right<cr>", { desc = "Open explorer" })
-
 -- LSP
-keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-keymap("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic error messages" })
-keymap("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
+-- keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+-- keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+-- keymap("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic error messages" })
+-- keymap("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
@@ -152,52 +107,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- Exec
--- keymap("n", "<leader>xm", function()
--- 	vim.ui.input({ prompt = "Target" }, function(target)
--- 		if not target then
--- 			return
--- 		end
--- 		vim.cmd("VimuxRunCommand 'make " .. target .. "' ")
--- 	end)
--- end, { desc = "Execute make rule" })
---
--- keymap("n", "<leader>xx", function()
--- 	vim.ui.input({ prompt = "Executable" }, function(target)
--- 		if not target then
--- 			return
--- 		end
--- 		if target == "" then
--- 			-- relative path and no file extension
--- 			target = vim.fn.expand("%:p:r") .. ".out"
--- 		else
--- 			target = vim.fn.expand("%:p:h") .. "/" .. target
--- 		end
--- 		vim.cmd("VimuxRunCommand '" .. target .. "'")
--- 	end)
--- end, { desc = "Execute this file" })
---
--- keymap("n", "<leader>xt", function()
--- 	vim.cmd("VimuxRunCommand 'make test'")
--- end, { desc = "Execute test" })
-
 -- Open
 keymap("n", "<leader>of", "<cmd>! open '%:h' <cr>", { desc = "Open current file in Finder" })
 keymap("n", "<leader>op", "<cmd>! open '%:p:r.pdf' <cr>", { desc = "Open current file as PDF" })
 
 -- Git
-keymap("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
-keymap("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Git status" })
+-- keymap("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
+-- keymap("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Git status" })
 keymap("n", "<leader>gh", "<cmd>! gh browse <cr>", { desc = "Open GitHub" })
 
--- Harpoon
-
 -- Icon picker
-keymap("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>", { desc = "Choose an emoji" })
-keymap("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>", { desc = "Choose an nerd icon" })
+-- keymap("n", "<leader>ie", "<cmd>IconPickerYank emoji<cr>", { desc = "Choose an emoji" })
+-- keymap("n", "<leader>in", "<cmd>IconPickerYank nerd_font<cr>", { desc = "Choose an nerd icon" })
 
 -- Reload config
-keymap("n", "<leader>cr", "<cmd>source $MYVIMRC<cr>", { desc = "Reload config" })
+-- keymap("n", "<leader>cr", "<cmd>source $MYVIMRC<cr>", { desc = "Reload config" })
 
 -- Copilot
 -- keymap("i", "<C-c>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })

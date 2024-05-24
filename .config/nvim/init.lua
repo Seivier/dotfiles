@@ -12,7 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("vgonzalez.core")
-require("vgonzalez.keymaps")
 require("lazy").setup({
 	-- THEMES --
 	{

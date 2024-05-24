@@ -43,7 +43,6 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
--- opt.colorcolumn = "100"
 opt.scrolloff = 0
 
 -- update

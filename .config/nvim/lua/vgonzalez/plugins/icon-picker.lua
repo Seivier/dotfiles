@@ -7,4 +7,8 @@ return {
 	opts = {
 		disable_legacy_commands = true,
 	},
+	keys = {
+		{ "<leader>ie", "<cmd>IconPickerYank emoji<cr>", desc = "Choose en emoji" },
+		{ "<leader>in", "<cmd>IconPickerYank nerd_font<cr>", desc = "Choose a nerd icon" },
+	},
 }
