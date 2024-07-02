@@ -58,7 +58,7 @@ M.config = function()
 
 	require("lualine").setup({
 		options = {
-			theme = "rose-pine",
+			theme = "auto",
 			component_separators = "",
 			-- round section separtors
 			-- section_separators = { left = "", right = "" },
@@ -74,8 +74,9 @@ M.config = function()
 				"mode",
 			},
 			lualine_b = {
+				-- "filetype",
 				{ "filetype", icon_only = true, padding = { left = 1, right = 0 } },
-				{ "filename" },
+				{ "filename", path = 0 },
 			},
 			lualine_c = {
 				{
@@ -86,6 +87,17 @@ M.config = function()
 				},
 			},
 			lualine_x = {
+				{
+					"tabs",
+					mode = 0,
+					path = 0,
+					-- tabs_color = { active = "lualine_a_normal", inactive = "lualine_a_inactive" },
+					use_mode_colors = false,
+					show_modified_status = false,
+					cond = function ()
+						return vim.fn.tabpagenr("$") ~= 1
+					end,
+				},
 				{
 					"diagnostics",
 					sources = { "nvim_lsp", "nvim_diagnostic" },
@@ -104,7 +116,9 @@ M.config = function()
 					},
 				},
 			},
-			lualine_z = { { "b:gitsigns_head", icon = "" } },
+			lualine_z = {
+				{ "b:gitsigns_head", icon = "" },
+			},
 		},
 		inactive_sections = {
 			lualine_c = {
@@ -124,6 +138,7 @@ M.config = function()
 				},
 			},
 		},
+
 		extensions = {
 			"neo-tree",
 			"lazy",

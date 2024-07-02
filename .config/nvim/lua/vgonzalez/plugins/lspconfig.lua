@@ -2,14 +2,14 @@ local servers = {
 	lua_ls = {
 		settings = {
 			Lua = {
-				runtime = { version = "LuaJIT" },
-				workspace = {
-					checkThirdParty = false,
-					library = {
-						"${3rd}/luv/library",
-						unpack(vim.api.nvim_get_runtime_file("", true)),
-					},
-				},
+				-- runtime = { version = "LuaJIT" },
+				-- workspace = {
+				-- 	checkThirdParty = false,
+				-- 	library = {
+				-- 		"${3rd}/luv/library",
+				-- 		unpack(vim.api.nvim_get_runtime_file("", true)),
+				-- 	},
+				-- },
 				completion = {
 					callSnippet = "Replace",
 				},
@@ -53,33 +53,12 @@ local M = {
 				"MunifTanjim/nui.nvim",
 			},
 		},
+		{ "folke/neodev.nvim", opts = {} },
 	},
-	-- { "folke/neodev.nvim",              opts = {} },
-	-- { "jose-elias-alvarez/null-ls.nvim" },
 }
 
 M.config = function()
-	-- local null_ls = require("null-ls")
-	-- local formatting = null_ls.builtins.formatting
-	-- local diagnostics = null_ls.builtins.diagnostics
-	--
-	-- null_ls.setup({
-	--   sources = {
-	--     formatting.prettier,
-	--     formatting.stylua,
-	--     -- formatting.autopep8,
-	--     formatting.pyink,
-	--     -- formatting.black,
-	--     formatting.djlint,
-	--     formatting.ocamlformat,
-	--     formatting.prettier,
-	--     formatting.cmake_format,
-	--     formatting.clang_format,
-	--     diagnostics.pylint,
-	--     -- diagnostics.cpplint,
-	--   },
-	--   log_level = "trace",
-	-- })
+	require("neodev").setup()
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
@@ -112,9 +91,6 @@ M.config = function()
 					if client.server_capabilities.documentSymbolProvider then
 						require("nvim-navic").attach(client, bufnr)
 						require("nvim-navbuddy").attach(client, bufnr)
-					end
-					if client.server_capabilities.inlayHintProvider then
-						vim.lsp.inlay_hint.enable(true)
 					end
 				end
 				require("lspconfig")[server_name].setup(server)

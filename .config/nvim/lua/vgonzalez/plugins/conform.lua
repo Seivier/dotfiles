@@ -14,12 +14,12 @@ M.opts = {
 		typst = { "typstfmt" },
 		markdown = { "prettier" },
 	},
-	formatters = {
-		["clang-format"] = {
-			inherit = true,
-			prepend_args = { "-style=Google" },
-		},
-	},
+	-- formatters = {
+	-- 	["clang-format"] = {
+	-- 		inherit = true,
+	-- 		prepend_args = { "-style=Google" },
+	-- 	},
+	-- },
 }
 
 return M

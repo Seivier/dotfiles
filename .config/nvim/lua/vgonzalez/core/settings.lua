@@ -9,12 +9,16 @@ opt.number = true
 opt.relativenumber = true
 
 -- tabs
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.shiftwidth = 2
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
 opt.expandtab = true
 opt.smarttab = true
+opt.smartindent = true
 opt.autoindent = true
+
+-- tabs (viewport)
+opt.showtabline = 0
 
 -- undo
 opt.undofile = true
@@ -32,9 +36,10 @@ opt.mouse = "a"
 -- encode
 opt.encoding = "utf-8"
 
--- popup
--- opt.pumwidth = 5
--- opt.pumheight = 10
+-- Netrw
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+
 
 -- cursor
 opt.cursorline = true
@@ -43,7 +48,10 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
-opt.scrolloff = 0
+
+-- scroll
+opt.scrolloff = 5
+opt.smoothscroll = true
 
 -- update
 opt.updatetime = 250
@@ -75,3 +83,7 @@ opt.inccommand = "split"
 opt.ignorecase = true
 opt.smartcase = true
 opt.showmatch = true
+
+-- spell checking
+opt.spell = true
+opt.spelllang="en,es"

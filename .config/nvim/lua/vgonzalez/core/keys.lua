@@ -4,7 +4,10 @@ keymap("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 keymap("i", "<C-a>", "<Esc>")
 
--- null buffer
+keymap("n", "<Enter>", "a<Enter><Esc>")
+keymap("n", "<S-Enter>", "A<Enter><Esc>")
+
+-- null register
 keymap("n", "<leader>c", '"_c')
 keymap("n", "<leader>d", '"_d')
 
@@ -17,24 +20,24 @@ keymap("n", "<leader>we", "<C-w>=", { desc = "Resize all windows" })
 keymap("n", "<leader>wz", "<cmd>resize | vertical resize<cr>", { desc = "Zoom this window" })
 
 -- buffers
-keymap("n", "<tab>", "<cmd>b#<cr>", { desc = "Alternate buffer" })
-keymap("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next buffer" }) -- bnext
-keymap("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous buffer" }) -- bprevious
-keymap("n", "<leader>bx", "<cmd>!bd<cr>", { desc = "Close this buffer" })
-keymap("n", "<leader>bg", function()
-	local num = vim.fn.input("Buffer number: ")
-	vim.cmd("b" .. num)
-end, { desc = "Go to buffer" })
+keymap("n", "<Tab>", "<cmd>b#<cr>", { desc = "Alternate buffer" })
+-- keymap("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next buffer" }) -- bnext
+-- keymap("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous buffer" }) -- bprevious
+-- keymap("n", "<leader>bx", "<cmd>!bd<cr>", { desc = "Close this buffer" })
+-- keymap("n", "<leader>bg", function()
+-- 	local num = vim.fn.input("Buffer number: ")
+-- 	vim.cmd("b" .. num)
+-- end, { desc = "Go to buffer" })
 
 -- terminal
 keymap("t", "<C-a>", "<C-\\><C-n>")
 keymap("n", "<leader>tt", "<cmd>split +terminal<cr>", { desc = "Open Terminal"})
 
 -- tabs
-keymap("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next tab" }) -- tab
-keymap("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Previous tab" }) -- s-tab?
-keymap("n", "<leader>to", "<cmd>tabnew<cr>", { desc = "New tab" })
-keymap("n", "<leader>tx", "<cmd>tabclose<cr>", { desc = "Close tab" })
+keymap("n", "<leader><Tab>", "<cmd>tabnext<cr>", { desc = "Alternate tab" }) -- tab
+-- keymap("n", "<S-Tab>", "<cmd>tabprevious<cr>", { desc = "Previous tab" }) -- s-tab?
+-- keymap("n", "<leader>po", "<cmd>tabnew<cr>", { desc = "New tab" })
+-- keymap("n", "<leader>px", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
 -- LSP
 -- keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })

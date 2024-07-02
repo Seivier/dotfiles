@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/rose-pine.toml"]
+import = ["~/.config/alacritty/themes/themes/one_dark.toml"]
 
 [env]
 # TERM = "alacritty"
@@ -10,17 +10,17 @@ size = 14.0
 family = "JetbrainsMono Nerd Font"
 
 [font.offset]
-y = 6
+y = 4
 
 [font.glyph_offset]
-y = 3
+y = 2 
 
 [window]
 decorations = "buttonless"
 dynamic_title = true
 option_as_alt = "OnlyLeft"
-opacity = 0.8
-blur = true
+opacity = 0.9
+# blur = true
 
 [window.padding]
 x = 10
