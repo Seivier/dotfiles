@@ -1,14 +1,6 @@
-local has_words_before = function()
-	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-		return false
-	end
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-end
-
 local M = {
 	"hrsh7th/nvim-cmp",
-	event = "InsertEnter",
+	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		{
 			"L3MON4D3/LuaSnip",
@@ -25,19 +17,14 @@ local M = {
 		"hrsh7th/cmp-path",
 		"f3fora/cmp-spell",
 		"hrsh7th/cmp-nvim-lua",
-		-- "hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
+		"windwp/nvim-autopairs",
 		{
 			"onsails/lspkind.nvim",
 			config = function()
-				require("lspkind").init({
-					symbol_map = {
-						-- Copilot = "",
-					},
-				})
+				require("lspkind").init()
 			end,
 		},
-		-- "windwp/nvim-autopairs",
 	},
 }
 
@@ -45,7 +32,7 @@ M.config = function()
 	local cmp = require("cmp")
 	local luasnip = require("luasnip")
 	local lspkind = require("lspkind")
-	-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 	luasnip.config.setup({})
 	require("luasnip.loaders.from_vscode").lazy_load()
 	cmp.setup({
@@ -54,17 +41,26 @@ M.config = function()
 				luasnip.lsp_expand(args.body) -- For `luasnip` users.
 			end,
 		},
-		preselect = cmp.PreselectMode.None,
-		completion = { completeopt = "menu, menuone, noinsert, noselect" },
-		-- window = {
-		--   completion = cmp.config.window.bordered(),
-		--   documentation = cmp.config.window.bordered(),
-		-- },
+		completion = { completeopt = "menu,preview,menuone,noinsert,noselect" },
 		mapping = {
-			["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-			["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-			["<C-j>"] = cmp.mapping.scroll_docs(-4),
-			["<C-k>"] = cmp.mapping.scroll_docs(4),
+			-- ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+			-- ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+			["<Tab>"] = cmp.mapping(function(fallback)
+				  -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+				  if cmp.visible() then
+					local entry = cmp.get_selected_entry()
+					if not entry then
+					  cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+					end
+					cmp.confirm()
+				  else
+					fallback()
+				  end
+				end, {"i","s","c",}),
+			["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+			["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+			["<C-d>"] = cmp.mapping.scroll_docs(-4),
+			["<C-u>"] = cmp.mapping.scroll_docs(4),
 			["<C-c>"] = cmp.mapping.complete(),
 			["<C-e>"] = cmp.mapping.abort(),
 			["<CR>"] = cmp.mapping.confirm({ select = false }),
@@ -88,38 +84,22 @@ M.config = function()
 			{ name = "path" },
 			{ name = "neorg" }
 		},
-		-- window = {
-		-- 	completion = {
-		-- 		winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-		-- 		col_offset = -3,
-		-- 		side_padding = 0,
-		-- 	},
-		-- },
-		-- formatting = {
-		-- 	fields = { "kind", "abbr", "menu" },
-		-- 	format = function(entry, vim_item)
-		-- 		local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-		-- 		local strings = vim.split(kind.kind, "%s", { trimempty = true })
-		-- 		kind.kind = " " .. (strings[1] or "") .. " "
-		-- 		kind.menu = "    (" .. (strings[2] or "") .. ")"
-		--
-		-- 		return kind
-		-- 	end,
-		-- },
 		formatting = {
-			format = lspkind.cmp_format({ mode = "symbol_text" }),
+			-- expandable_indicator = true,
+			-- fields = { cmp.ItemField.Menu, cmp.ItemField.Kind, cmp.ItemField.Abbr },
+			format = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50, ellipsis_char = "..." }),
 		},
 	})
 
 	cmp.setup.cmdline(":", {
-		mapping = cmp.mapping.preset.cmdline(),
+		-- mapping = cmp.mapping.preset.cmdline(),
 		sources = {
 			{ name = "path" },
 			{ name = "cmdline" },
 		},
 	})
 
-	-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 	-- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6E5494" })
 end
 

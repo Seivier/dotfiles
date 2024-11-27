@@ -1,3 +1,13 @@
+-- Make
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "Set compiler",
+	group = vim.api.nvim_create_augroup("my-compiler-set", { clear = true }),
+	pattern = "python",
+	callback = function()
+		vim.opt_local.makeprg = "python"
+	end,
+})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -9,35 +19,42 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("FileType", {
 	desc = "Activate wrap for Latex, Typst and Markdown",
-	group = vim.api.nvim_create_augroup("enter-wrap-text", {clear = true}),
-	callback = function (opts)
-		local ft = vim.bo[opts.buf].filetype
-		if ft == 'typst' or ft == "markdown" or ft == "text" or ft == "norg" then
-			vim.opt.wrap = true
-		end
-	end
+	group = vim.api.nvim_create_augroup("enter-wrap-text", { clear = true }),
+	pattern = { "typst", "markdown", "text", "norg", "quarto" },
+	callback = function(opts)
+		vim.opt_local.wrap = true
+	end,
 })
 
-vim.api.nvim_create_autocmd("BufLeave", {
-	desc = "Activate wrap for Latex, Typst and Markdown",
-	group = vim.api.nvim_create_augroup("leave-wrap-text", {clear = true}),
-	callback = function (opts)
-		local ft = vim.bo[opts.buf].filetype
-		if ft == 'typst' or ft == "markdown" or ft == "text" or ft == "norg" then
-			vim.opt.wrap = false
-		end
-	end
-})
+-- vim.api.nvim_create_autocmd("BufLeave", {
+-- 	desc = "Activate wrap for Latex, Typst and Markdown",
+-- 	group = vim.api.nvim_create_augroup("leave-wrap-text", {clear = true}),
+-- 	pattern = {"typst", "markdown", "text", "norg"},
+-- 	callback = function (opts)
+-- 		vim.opt_local.wrap = false
+-- 	end
+-- })
 
+-- OpenCL
 vim.api.nvim_create_autocmd("BufAdd", {
 	desc = "Treat OpenCL as C lang",
-	group = vim.api.nvim_create_augroup("opencl-c", {clear = true}),
+	group = vim.api.nvim_create_augroup("opencl-c", { clear = true }),
 	pattern = "*.cl",
-	callback = function (opts)
+	callback = function(opts)
 		vim.bo[opts.buf].filetype = "c"
-	end
+	end,
+})
+
+-- OpenGL
+vim.api.nvim_create_autocmd("BufAdd", {
+	desc = "Set OpenGL filetype",
+	group = vim.api.nvim_create_augroup("opengl", { clear = true }),
+	pattern = { "*.frag", "*.vert", "*.glsl" },
+	callback = function(opts)
+		vim.bo[opts.buf].filetype = "glsl"
+	end,
 })
 
 -- LSP
@@ -62,7 +79,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("K", vim.lsp.buf.hover, "Hover Documentation")
 		map("gD", vim.lsp.buf.declaration, "Goto declaration")
 		map("<leader>ln", "<cmd>Navbuddy<cr>", "Navigate to symbol")
-		map("<leader>lh", function ()
+		map("<leader>lh", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 		end, "Enable inlay hints")
 

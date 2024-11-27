@@ -21,23 +21,13 @@ keymap("n", "<leader>wz", "<cmd>resize | vertical resize<cr>", { desc = "Zoom th
 
 -- buffers
 keymap("n", "<Tab>", "<cmd>b#<cr>", { desc = "Alternate buffer" })
--- keymap("n", "<leader>bn", "<cmd>bn<cr>", { desc = "Next buffer" }) -- bnext
--- keymap("n", "<leader>bp", "<cmd>bp<cr>", { desc = "Previous buffer" }) -- bprevious
--- keymap("n", "<leader>bx", "<cmd>!bd<cr>", { desc = "Close this buffer" })
--- keymap("n", "<leader>bg", function()
--- 	local num = vim.fn.input("Buffer number: ")
--- 	vim.cmd("b" .. num)
--- end, { desc = "Go to buffer" })
 
 -- terminal
 keymap("t", "<C-a>", "<C-\\><C-n>")
-keymap("n", "<leader>tt", "<cmd>split +terminal<cr>", { desc = "Open Terminal"})
+keymap("n", "<leader>t", "<cmd>split +terminal<cr>", { desc = "Open Terminal" })
 
 -- tabs
 keymap("n", "<leader><Tab>", "<cmd>tabnext<cr>", { desc = "Alternate tab" }) -- tab
--- keymap("n", "<S-Tab>", "<cmd>tabprevious<cr>", { desc = "Previous tab" }) -- s-tab?
--- keymap("n", "<leader>po", "<cmd>tabnew<cr>", { desc = "New tab" })
--- keymap("n", "<leader>px", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
 -- LSP
 -- keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
@@ -86,8 +76,7 @@ keymap("n", "<leader><Tab>", "<cmd>tabnext<cr>", { desc = "Alternate tab" }) -- 
 -- })
 
 -- Open
-keymap("n", "<leader>of", "<cmd>! open '%:h' <cr>", { desc = "Open current file in Finder" })
-keymap("n", "<leader>op", "<cmd>! open '%:p:r.pdf' <cr>", { desc = "Open current file as PDF" })
+keymap("n", "<leader>o", "<cmd>! open '%:h' <cr>", { desc = "Open parent folder in Finder" })
 
 -- Git
 -- keymap("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
@@ -105,4 +94,9 @@ keymap("n", "<leader>gh", "<cmd>! gh browse <cr>", { desc = "Open GitHub" })
 -- keymap("i", "<C-c>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
 
 -- Oil
-keymap("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory"  })
+keymap("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+
+-- Run
+keymap("n", "<leader>m.", [[<cmd>Make "%"<cr>]], { desc = "Make this file" })
+keymap("n", "<leader>mt", "<cmd>Make test<cr>", { desc = "Make test" })
+keymap("n", "<leader>m<cr>", "<cmd>Make<cr>", { desc = "Make all" })

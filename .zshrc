@@ -103,8 +103,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export DEV="~/dev"
+export ICLOUD="/Users/vgonzalez/Library/Mobile Documents/com~apple~CloudDocs/"
+export DEV="~/Documents/Dev"
 export UNI="$DEV/Universidad"
+export VCPKG_ROOT="$HOME/vcpkg"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -116,15 +118,14 @@ export LANG=en_US.UTF-8
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR="nvim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 export EDITOR="nvim"
 # export CC="/opt/homebrew/bin/gcc-14"
 # export CXX="/opt/homebrew/bin/g++-14"
-export CC=clang
-export CXX=clang++
+# export CC=clang
+# export CXX=clang++
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -135,6 +136,9 @@ export CXX=clang++
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wait="caffeinate -ids"
+alias e=$EDITOR
+alias ic="cd $ICLOUD"
+alias uwu="cd $UNI"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -153,3 +157,7 @@ unset __conda_setup
 
 # opam configuration
 [[ ! -r /home/vgonzalez/.opam/opam-init/init.zsh ]] || source /home/vgonzalez/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+autoload bashcompinit
+bashcompinit
+source /Users/vgonzalez/vcpkg/scripts/vcpkg_completion.zsh

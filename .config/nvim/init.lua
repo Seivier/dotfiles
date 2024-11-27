@@ -1,4 +1,4 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+klocal lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -17,6 +17,9 @@ require("lazy").setup({
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		opts = {
+			transparent_background = true,
+		},
 		priority = 1000,
 	},
 	{
@@ -53,11 +56,15 @@ require("lazy").setup({
 		priority = 1000,
 	},
 	{
-		"navarasu/onedark.nvim",
+		"joshdick/onedark.vim",
 		priority = 1000,
 	},
 	{
 		"shaunsingh/nord.nvim",
+		priority = 1000,
+	},
+	{
+		"Mofiqul/vscode.nvim",
 		priority = 1000,
 	},
 	{ import = "vgonzalez.plugins" },

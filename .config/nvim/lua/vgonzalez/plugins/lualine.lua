@@ -15,14 +15,14 @@ local M = {
 M.config = function()
 	local function get_vim_mode()
 		local icon = {
-			n = "",
-			i = "",
-			c = "",
-			V = "",
-			v = "",
-			R = "",
-			r = "",
-			t = "",
+			n = " ",
+			i = " ",
+			c = " ",
+			V = " ",
+			v = " ",
+			R = " ",
+			r = " ",
+			t = " ",
 		}
 		local vim_mode = vim.fn.mode()
 		local ic = icon[vim_mode]
@@ -71,12 +71,12 @@ M.config = function()
 		sections = {
 			lualine_a = {
 				{ get_vim_mode, padding = { left = 1, right = 0 } },
-				"mode",
+				{ "mode", padding = {left = 0, right = 1} },
 			},
 			lualine_b = {
 				-- "filetype",
-				{ "filetype", icon_only = true, padding = { left = 1, right = 0 } },
-				{ "filename", path = 0 },
+				{ "filetype", icon_only = true, colored = false, padding = { left = 1, right = 0 } },
+				{ "filename", path = 0, padding = { left = 0, right = 1 } },
 			},
 			lualine_c = {
 				{
@@ -94,7 +94,7 @@ M.config = function()
 					-- tabs_color = { active = "lualine_a_normal", inactive = "lualine_a_inactive" },
 					use_mode_colors = false,
 					show_modified_status = false,
-					cond = function ()
+					cond = function()
 						return vim.fn.tabpagenr("$") ~= 1
 					end,
 				},
@@ -102,39 +102,30 @@ M.config = function()
 					"diagnostics",
 					sources = { "nvim_lsp", "nvim_diagnostic" },
 					sections = { "error", "warn", "info", "hint" },
+					colored = false
 				},
 			},
 			lualine_y = {
 				{
 					"diff",
-					colored = true,
+					colored = false,
 					source = diff_source,
-					symbols = {
-						added = " ",
-						modified = " ",
-						removed = " ",
-					},
 				},
 			},
 			lualine_z = {
-				{ "b:gitsigns_head", icon = "" },
+				{ "b:gitsigns_head", icon = "" },
 			},
 		},
 		inactive_sections = {
 			lualine_c = {
 				{ "filetype", icon_only = true, padding = { left = 1, right = 0 } },
-				{ "filename" },
+				{ "filename", padding = { left = 0, right = 1 } },
 			},
 			lualine_x = {
 				{
 					"diff",
-					colored = false,
+					colored = true,
 					source = diff_source,
-					symbols = {
-						added = " ",
-						modified = " ",
-						removed = " ",
-					},
 				},
 			},
 		},

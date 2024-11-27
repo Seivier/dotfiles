@@ -26,6 +26,12 @@ M.opts = {
 		["g\\"] = "actions.toggle_trash",
 	},
 	use_default_keymaps = false,
+	delete_to_trash = true,
+	watch_for_changes = true,
+
+	view_options = {
+		show_hidden = true,
+	}
 }
 
 M.keys = { { "-", "<cmd>Oil<cr>", desc = "Open parent directory" } }

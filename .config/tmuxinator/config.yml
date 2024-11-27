@@ -45,8 +45,8 @@ root: ~/.dotfiles/
 # attach: false
 
 windows:
-  - nvim: cd .config/nvim && nvim
-  - tmux: nvim .tmux.conf
-  - zsh: nvim .zshrc
-  - term: cd .config/kitty && nvim
+  - nvim: cd .config/nvim && e .
+  - tmux: cd .config/tmux && e .
+  - zsh: e .zshrc
+  - term: cd .config/kitty && e .
         

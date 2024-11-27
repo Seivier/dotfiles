@@ -56,4 +56,4 @@ M.keys = {
 	}
 }
 
-return M
+return {}

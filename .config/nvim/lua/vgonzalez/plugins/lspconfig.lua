@@ -1,20 +1,20 @@
 local servers = {
 	lua_ls = {
-		settings = {
-			Lua = {
-				-- runtime = { version = "LuaJIT" },
-				-- workspace = {
-				-- 	checkThirdParty = false,
-				-- 	library = {
-				-- 		"${3rd}/luv/library",
-				-- 		unpack(vim.api.nvim_get_runtime_file("", true)),
-				-- 	},
-				-- },
-				completion = {
-					callSnippet = "Replace",
-				},
-			},
-		},
+		-- settings = {
+		-- 	Lua = {
+		-- 		-- runtime = { version = "LuaJIT" },
+		-- 		-- workspace = {
+		-- 		-- 	checkThirdParty = false,
+		-- 		-- 	library = {
+		-- 		-- 		"${3rd}/luv/library",
+		-- 		-- 		unpack(vim.api.nvim_get_runtime_file("", true)),
+		-- 		-- 	},
+		-- 		-- },
+		-- 		completion = {
+		-- 			callSnippet = "Replace",
+		-- 		},
+		-- 	},
+		-- },
 	}, -- lua
 	clangd = {
 		capabilities = {
@@ -31,12 +31,15 @@ local servers = {
 	html = {
 		filetypes = { "html", "htmldjango" },
 	}, -- html
-	tsserver = {}, -- typescript & javascript
 	cssls = {}, -- css
 	texlab = {}, -- latex
 	cmake = {}, -- cmake
-	marksman = {}, -- markdown
+	marksman = {
+		filetypes = { "markdown", "quarto" },
+	}, -- markdown
 	opencl_ls = {},
+	glsl_analyzer = {},
+	omnisharp = {},
 }
 
 local M = {
@@ -78,15 +81,15 @@ M.config = function()
 		handlers = {
 			function(server_name)
 				local server = servers[server_name] or {}
-				server.capabilities = vim.tbl_deep_extend("force", {
-					textDocument = {
-						completion = {
-							completionItem = {
-								snippetSupport = false,
-							},
-						},
-					},
-				}, capabilities, server.capabilities or {})
+				-- server.capabilities = vim.tbl_deep_extend("force", {
+				-- 	textDocument = {
+				-- 		completion = {
+				-- 			completionItem = {
+				-- 				snippetSupport = false,
+				-- 			},
+				-- 		},
+				-- 	},
+				-- }, capabilities, server.capabilities or {})
 				server.on_attach = function(client, bufnr)
 					if client.server_capabilities.documentSymbolProvider then
 						require("nvim-navic").attach(client, bufnr)

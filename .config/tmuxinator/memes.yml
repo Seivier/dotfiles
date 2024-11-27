@@ -1,7 +1,7 @@
 # /Users/vgonzalez/.config/tmuxinator/memes.yml
 
 name: memes
-root: ~/Dev/Universidad/Metodologías de Diseño y Programación/
+root: "~/Documents/Dev/Universidad/CC3002/"
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,4 +45,8 @@ root: ~/Dev/Universidad/Metodologías de Diseño y Programación/
 # attach: false
 
 windows:
-  - repo: cd cc3002-24o && nvim
+  - auxiliares:
+    - cd Auxiliares && e .
+
+  - tareas:
+    - cd Tareas && e .

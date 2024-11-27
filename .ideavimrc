@@ -182,4 +182,4 @@ map <leader>e <Action>(Project)
 "" Map \b to toggle the breakpoint on the current line
 "map \b <Action>(ToggleLineBreakpoint)
 
-map <leader>ff <Action>(SearchEverywhere)
+map <leader>sf <Action>(SearchEverywhere)

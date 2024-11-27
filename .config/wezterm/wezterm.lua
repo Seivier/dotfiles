@@ -2,13 +2,15 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+config.default_cursor_style = "SteadyBar"
 config.color_scheme = 'rose-pine'
 config.enable_tab_bar = false
-config.window_background_opacity = 0.95
-config.macos_window_background_blur = 10
-config.font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Medium" })
+config.window_background_opacity = 0.9
+-- config.macos_window_background_blur = 10
+config.font = wezterm.font_with_fallback({{family = "JetBrains Mono", weight = "Medium" }, "JetBrainsMono Nerd Font"})
 config.font_size = 14
-config.freetype_load_flags = 'NO_HINTING'
+config.line_height = 1.2
+-- config.freetype_load_flags = 'NO_HINTING'
 -- config.freetype_render_target = "HorizontalLcd"
 config.window_decorations = "RESIZE"
 config.window_padding = {

@@ -3,16 +3,17 @@ local M = {
 }
 
 M.opts = {
-	-- format_on_save = {
-	-- 	timeout_ms = 500,
-	-- 	lsp_fallback = true,
-	-- },
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_fallback = true,
+	},
 	formatters_by_ft = {
 		lua = { "stylua" },
 		cpp = { "clang-format" },
 		c = { "clang-format" },
-		typst = { "typstfmt" },
+		-- typst = { "typstfmt" },
 		markdown = { "prettier" },
+		python = { "black" },
 	},
 	-- formatters = {
 	-- 	["clang-format"] = {

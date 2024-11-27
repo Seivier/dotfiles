@@ -4,29 +4,29 @@ local M = {
 }
 
 M.config = function()
-	require("which-key").register({
-		["<leader>"] = {
-			w = "window",
-			b = "buffer",
-			t = "tab",
-			l = "lsp",
-			g = "git",
-			h = "harpoon",
-			i = "icon",
-			o = "open",
-			s = "search",
-			["1"] = "which_key_ignore",
-			["2"] = "which_key_ignore",
-			["3"] = "which_key_ignore",
-			["4"] = "which_key_ignore",
-			["5"] = "which_key_ignore",
-			["6"] = "which_key_ignore",
-			["7"] = "which_key_ignore",
-			["8"] = "which_key_ignore",
-			["9"] = "which_key_ignore",
-			['c'] = "which_key_ignore",
-			['d'] = "which_key_ignore",
-		},
+	local wk = require("which-key")
+	wk.add({
+		{"<leader>w", desc = "window"},
+		-- {"<leader>b", desc = "buffer"},
+		-- {"<leader>t", desc = "tab"},
+		{"<leader>l", desc = "lsp"},
+		{"<leader>g", desc = "git"},
+		{"<leader>h", desc = "harpoon"},
+		{"<leader>i", desc = "icon"},
+		{"<leader>m", desc = "make"},
+		-- {"<leader>o", desc = "open"},
+		{"<leader>s", desc = "search"},
+		{"<leader>1", hidden = true},
+		{"<leader>2", hidden = true},
+		{"<leader>3", hidden = true},
+		{"<leader>4", hidden = true},
+		{"<leader>5", hidden = true},
+		{"<leader>6", hidden = true},
+		{"<leader>7", hidden = true},
+		{"<leader>8", hidden = true},
+		{"<leader>9", hidden = true},
+		{"<leader>c", hidden = true},
+		{"<leader>d", hidden = true},
 	})
 end
 

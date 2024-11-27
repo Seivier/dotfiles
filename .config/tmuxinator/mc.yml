@@ -1,7 +1,7 @@
-# /Users/vgonzalez/.config/tmuxinator/tesis.yml
+# /Users/vgonzalez/.config/tmuxinator/mc.yml
 
-name: tesis
-root: ~/Documents/Dev/Universidad/CC7980/
+name: mc
+root: ~/Documents/Dev/Personal/MC/
 
 # Optional tmux socket
 # socket_name: foo
@@ -32,7 +32,7 @@ root: ~/Documents/Dev/Universidad/CC7980/
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
 
-# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# Change the command to call tmux. This can be used by derivatives/wrappers like byobu.
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
@@ -45,7 +45,11 @@ root: ~/Documents/Dev/Universidad/CC7980/
 # attach: false
 
 windows:
-  - main: cd 3D-GPolylla && e .
-  - polylla: cd 3D-Polylla && e .
-  # - build: cd 3D-GPolylla && make watch
-  # - propuesta: cd CC7970-24O && nvim
+  - editor:
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - vim
+        - guard

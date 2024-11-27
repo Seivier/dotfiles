@@ -1,4 +1,4 @@
-return {
+local M = {
 	"nvim-neorg/neorg",
 	dependencies = { "luarocks.nvim" },
 	lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
@@ -32,3 +32,5 @@ return {
 		})
 	end,
 }
+
+return {}
